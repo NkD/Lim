@@ -126,24 +126,35 @@ public class ExampleLibGdx implements ApplicationListener {
         nano = now;
         if (step > MAX_BOX_STEP) step = MAX_BOX_STEP;
 
-        if (mouseMiddle && Gdx.input.isButtonPressed(Buttons.MIDDLE)) {
-            float gX = world.getGravity().y;
-            float gY = world.getGravity().x;
-            rotGravity = 1 - rotGravity;
-            if (rotGravity == 0) {
-                gX = -gX;
-                gY = -gY;
-            }
-
+        if (Gdx.app.getType() == ApplicationType.Android) {
+            float gX = Gdx.input.getAccelerometerY();
+            float gY = -Gdx.input.getAccelerometerX();
+            Gdx.app.debug("accel", gX + ", " +gY);
             world.setGravity(new Vector2(gX, gY));
-            mouseMiddle = false;
             for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
                 Body body = iterator.next();
                 body.setAwake(true);
             }
-        }
-        if (!Gdx.input.isButtonPressed(Buttons.MIDDLE)) mouseMiddle = true;
+            
+        } else {
+            if (mouseMiddle && Gdx.input.isButtonPressed(Buttons.MIDDLE)) {
+                float gX = world.getGravity().y;
+                float gY = world.getGravity().x;
+                rotGravity = 1 - rotGravity;
+                if (rotGravity == 0) {
+                    gX = -gX;
+                    gY = -gY;
+                }
 
+                world.setGravity(new Vector2(gX, gY));
+                mouseMiddle = false;
+                for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
+                    Body body = iterator.next();
+                    body.setAwake(true);
+                }
+            }
+            if (!Gdx.input.isButtonPressed(Buttons.MIDDLE)) mouseMiddle = true;
+        }
         //step = 1/600f;
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -169,7 +180,7 @@ public class ExampleLibGdx implements ApplicationListener {
         batch.begin();
         font.draw(batch, info.toString(), 3, camera.viewportHeight - 3);
 
-       for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
+        for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
             Body body = iterator.next();
             float[] data = (float[]) body.getUserData();
 

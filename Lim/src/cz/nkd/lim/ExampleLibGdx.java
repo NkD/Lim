@@ -7,6 +7,7 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -25,6 +26,9 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import cz.nkd.lim.rayhandler.PointLight;
+import cz.nkd.lim.rayhandler.RayHandler;
+
 /**
  * @author Michal NkD Nikodim
  *
@@ -34,8 +38,8 @@ public class ExampleLibGdx implements ApplicationListener {
     static final float MAX_BOX_STEP = 1 / 60f;
     static final int BOX_VELOCITY_ITERATIONS = 6;
     static final int BOX_POSITION_ITERATIONS = 2;
-    static final float W2B = 0.01f;
-    static final float B2W = 100f;
+    public static final float W2B = 0.01f;
+    public static final float B2W = 100;
 
     private World world;
     private OrthographicCamera camera;
@@ -50,6 +54,7 @@ public class ExampleLibGdx implements ApplicationListener {
     private boolean mouseMiddle = true;
     private int rotGravity = 0;
     private Texture texture;
+    private RayHandler rayHandler;
 
     @Override
     public void create() {
@@ -79,35 +84,23 @@ public class ExampleLibGdx implements ApplicationListener {
         createBody(BodyType.StaticBody, 0, camera.viewportHeight - 2, camera.viewportWidth, camera.viewportHeight);
         createBody(BodyType.StaticBody, 0, 0, 2, camera.viewportHeight);
         createBody(BodyType.StaticBody, camera.viewportWidth - 2, 0, camera.viewportWidth, camera.viewportHeight);
-        createBody(BodyType.StaticBody, 10, camera.viewportHeight / 2 - 20, camera.viewportWidth * 0.5f - 5, camera.viewportHeight / 2 + 20);
+        createBody(BodyType.StaticBody, 80, camera.viewportHeight / 2 - 20, camera.viewportWidth * 0.5f - 5, camera.viewportHeight / 2 + 20);
 
         float y = 500;
         for (int i = 0; i < 50; i++) {
-            createBody(BodyType.DynamicBody, camera.viewportWidth - 50, y - 20, camera.viewportWidth - 30, y);
+            createBody(BodyType.DynamicBody, camera.viewportWidth - 300, y - 20, camera.viewportWidth - 280, y);
             y = y - 30;
         }
-    }
 
-    private void createBody(BodyType bodyType, float x1, float y1, float x2, float y2) {
-        float xb1 = x1 * W2B;
-        float yb1 = y1 * W2B;
-        float xb2 = x2 * W2B;
-        float yb2 = y2 * W2B;
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(new Vector2(xb1 + ((xb2 - xb1) * 0.5f), yb1 + ((yb2 - yb1) * 0.5f)));
-        bodyDef.type = bodyType;
-        bodyDef.bullet = false;
-        Body body = world.createBody(bodyDef);
-        PolygonShape box = new PolygonShape();
-        box.setAsBox((xb2 - xb1) * 0.5f, (yb2 - yb1) * 0.5f);
-        FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.shape = box;
-        fixtureDef.density = 50f;
-        fixtureDef.friction = 0.4f;
-        fixtureDef.restitution = 0.3f; // Make it bounce a little bit
-        body.createFixture(fixtureDef);
-        body.setUserData(new float[] { xb2 - xb1, yb2 - yb1, MathUtils.random(0.5f) + 0.5f, MathUtils.random(0.5f) + 0.5f, MathUtils.random(0.5f) + 0.5f });
-        box.dispose();
+        rayHandler = new RayHandler(world, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        rayHandler.setCombinedMatrix(camera.combined);
+        rayHandler.setShadows(true);
+        rayHandler.setAmbientLight(0.5f, 0.5f, 0.5f, 0.2f);
+        PointLight pl = new PointLight(rayHandler, 1000, new Color(1, 1, 1, 1), 30, 200, 500);
+
+        Body body = createLight(camera.viewportWidth / 2 - 20, 20, camera.viewportWidth / 2 + 20, 60);
+        pl.attachToBody(body, 0, 0);
+
     }
 
     @Override
@@ -129,13 +122,13 @@ public class ExampleLibGdx implements ApplicationListener {
         if (Gdx.app.getType() == ApplicationType.Android) {
             float gX = Gdx.input.getAccelerometerY();
             float gY = -Gdx.input.getAccelerometerX();
-            Gdx.app.debug("accel", gX + ", " +gY);
+            Gdx.app.debug("accel", gX + ", " + gY);
             world.setGravity(new Vector2(gX, gY));
             for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
                 Body body = iterator.next();
                 body.setAwake(true);
             }
-            
+
         } else {
             if (mouseMiddle && Gdx.input.isButtonPressed(Buttons.MIDDLE)) {
                 float gX = world.getGravity().y;
@@ -174,6 +167,14 @@ public class ExampleLibGdx implements ApplicationListener {
         if (!Gdx.input.isButtonPressed(Buttons.LEFT)) {
             mouseLeft = true;
         }
+
+        //Matrix4 m= new Matrix4(camera.combined).scale(B2W, B2W, B2W);
+        rayHandler.setCombinedMatrix(camera.combined, camera.position.x, camera.position.y, camera.viewportWidth * camera.zoom, camera.viewportHeight * camera.zoom);
+
+        rayHandler.update();
+        rayHandler.render();
+        
+
         info.setLength(0);
         info.append("FPS: ").append(Gdx.graphics.getFramesPerSecond());
         info.append(" Bodies: ").append(world.getBodyCount());
@@ -187,11 +188,11 @@ public class ExampleLibGdx implements ApplicationListener {
             if (body.getType() == BodyType.StaticBody) {
                 sprite.setColor(1, 0, 0, 1f);
             } else {
-                if (!body.isAwake()) {
-                    sprite.setColor(0.2f, 0.2f, 0.2f, 1f);
-                } else {
-                    sprite.setColor(data[2], data[3], data[4], 0.5f);
-                }
+               // if (!body.isAwake()) {
+               //     sprite.setColor(0.2f, 0.2f, 0.2f, 1f);
+               // } else {
+                    sprite.setColor(data[2], data[3], data[4], 0.9f);
+               // }
             }
             sprite.setBounds(0, 0, data[0] * B2W, data[1] * B2W);
             sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
@@ -217,6 +218,7 @@ public class ExampleLibGdx implements ApplicationListener {
         }*/
         batch.end();
 
+       
     }
 
     @Override
@@ -237,4 +239,50 @@ public class ExampleLibGdx implements ApplicationListener {
         world.dispose();
     }
 
+    private Body createBody(BodyType bodyType, float x1, float y1, float x2, float y2) {
+        float xb1 = x1 * W2B;
+        float yb1 = y1 * W2B;
+        float xb2 = x2 * W2B;
+        float yb2 = y2 * W2B;
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.position.set(new Vector2(xb1 + ((xb2 - xb1) * 0.5f), yb1 + ((yb2 - yb1) * 0.5f)));
+        bodyDef.type = bodyType;
+        bodyDef.bullet = false;
+        Body body = world.createBody(bodyDef);
+        PolygonShape box = new PolygonShape();
+        box.setAsBox((xb2 - xb1) * 0.5f, (yb2 - yb1) * 0.5f);
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = box;
+        fixtureDef.density = 50f;
+        fixtureDef.friction = 0.4f;
+        fixtureDef.restitution = 0.3f; // Make it bounce a little bit
+        body.createFixture(fixtureDef);
+        body.setUserData(new float[] { xb2 - xb1, yb2 - yb1, MathUtils.random(0.5f) + 0.5f, MathUtils.random(0.5f) + 0.5f, MathUtils.random(0.5f) + 0.5f });
+        box.dispose();
+        return body;
+    }
+
+    private Body createLight(float x1, float y1, float x2, float y2) {
+        float xb1 = x1 * W2B;
+        float yb1 = y1 * W2B;
+        float xb2 = x2 * W2B;
+        float yb2 = y2 * W2B;
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.position.set(new Vector2(xb1 + ((xb2 - xb1) * 0.5f), yb1 + ((yb2 - yb1) * 0.5f)));
+        bodyDef.type = BodyType.DynamicBody;
+        bodyDef.bullet = false;
+        bodyDef.gravityScale = -0.1f;
+        Body body = world.createBody(bodyDef);
+        PolygonShape box = new PolygonShape();
+        box.setAsBox((xb2 - xb1) * 0.5f, (yb2 - yb1) * 0.5f);
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = box;
+        fixtureDef.density = 500f;
+        fixtureDef.friction = 0.1f;
+        fixtureDef.restitution = 0.3f; // Make it bounce a little bit
+        body.createFixture(fixtureDef);
+        body.setUserData(new float[] { xb2 - xb1, yb2 - yb1, 1, 1, 1 });
+        box.dispose();
+        return body;
+    }
 }

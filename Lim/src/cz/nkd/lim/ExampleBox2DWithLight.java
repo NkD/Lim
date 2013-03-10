@@ -259,7 +259,7 @@ public class ExampleBox2DWithLight implements ApplicationListener {
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(new Vector2(xb * 0.5f, yb * 0.5f));
         bodyDef.type = BodyType.DynamicBody;
-        bodyDef.bullet = false;
+        bodyDef.bullet = true;
         bodyDef.gravityScale = -0.1f;
         Body body = world.createBody(bodyDef);
         CircleShape circle = new CircleShape();

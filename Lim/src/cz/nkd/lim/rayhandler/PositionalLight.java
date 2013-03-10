@@ -10,8 +10,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
-import cz.nkd.lim.ExampleBox2DWithLight;
-
 public abstract class PositionalLight extends Light {
 
     private Body body;

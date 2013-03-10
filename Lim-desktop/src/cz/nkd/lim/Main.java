@@ -8,10 +8,10 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "Lim";
 		cfg.useGL20 = true;
-		cfg.width = 480;
-		cfg.height = 800;
+		cfg.width = 800;
+		cfg.height = 480;
 		cfg.vSyncEnabled = false;
 		
-		new LwjglApplication(new ExampleLibGdx(), cfg);
+		new LwjglApplication(new ExampleBox2DWithLight(), cfg);
 	}
 }

@@ -15,6 +15,6 @@ public class MainActivity extends AndroidApplication {
         cfg.useAccelerometer = true;
         cfg.useCompass = false;
         cfg.useWakelock = true;
-        initialize(new ExampleLibGdx(), cfg);
+        initialize(new ExampleBox2DWithLight(), cfg);
     }
 }

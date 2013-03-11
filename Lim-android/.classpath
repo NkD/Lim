@@ -2,10 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="src" exported="true" path="/Lim" combineaccessrules="false"/>
-	<classpathentry kind="output" path="bin/classes"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/Lim"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-	<classpathentry kind="lib" exported="true" path="/Lim/libs/gdx.jar" sourcepath="/Lim/libs/gdx-sources.jar"/>
-	<classpathentry kind="lib" exported="true" path="libs/gdx-backend-android.jar" sourcepath="libs/gdx-backend-android-sources.jar"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/gdx-backend-android"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/gdx"/>
+	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

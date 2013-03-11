@@ -190,8 +190,8 @@ public class ExampleBox2DWithLight implements ApplicationListener {
         }
         spriteBatch.end();
         
-        shapeRenderer.begin(ShapeType.FilledCircle);
-        shapeRenderer.filledCircle(lightBody.getPosition().x * B2W, lightBody.getPosition().y * B2W, lightBody.getFixtureList().get(0).getShape().getRadius() * B2W);
+        shapeRenderer.begin(ShapeType.Filled);
+        shapeRenderer.circle(lightBody.getPosition().x * B2W, lightBody.getPosition().y * B2W, lightBody.getFixtureList().get(0).getShape().getRadius() * B2W);
         shapeRenderer.end();
         
         spriteBatch.begin();

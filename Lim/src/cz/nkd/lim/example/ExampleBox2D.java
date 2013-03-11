@@ -7,7 +7,6 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -16,27 +15,21 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-
-import cz.nkd.lim.rayhandler.PointLight;
-import cz.nkd.lim.rayhandler.RayHandler;
 
 /**
  * @author Michal NkD Nikodim
  *
  */
-public class ExampleBox2DWithLight implements ApplicationListener {
+public class ExampleBox2D implements ApplicationListener {
 
     static final float MAX_BOX_STEP = 1 / 60f;
     static final int BOX_VELOCITY_ITERATIONS = 6;
@@ -49,7 +42,7 @@ public class ExampleBox2DWithLight implements ApplicationListener {
     private OrthographicCamera camera;
     private Sprite sprite;
     private Texture texture;
-    private RayHandler rayHandler;
+
     private SpriteBatch spriteBatch;
     private StringBuilder info;
     private BitmapFont font;
@@ -59,7 +52,6 @@ public class ExampleBox2DWithLight implements ApplicationListener {
     private boolean flagMouseMiddle = true;
     private int rotGravityHelper = 0;
     private Body lightBody;
-    private ShapeRenderer shapeRenderer;
     private Vector2 gravity = new Vector2();
     private Vector2 gravityMem = new Vector2();
 
@@ -70,7 +62,6 @@ public class ExampleBox2DWithLight implements ApplicationListener {
 
         font = new BitmapFont();
         info = new StringBuilder();
-        shapeRenderer = new ShapeRenderer();
 
         spriteBatch = new SpriteBatch();
         camera = new OrthographicCamera();
@@ -103,11 +94,6 @@ public class ExampleBox2DWithLight implements ApplicationListener {
             y = y - 30;
         }
 
-        rayHandler = new RayHandler(world, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        rayHandler.setAmbientLight(1f, 1f, 1f, 0.4f);
-        PointLight pl = new PointLight(rayHandler, 500, new Color(1, 1, 1, 0.7f), 10, 200, 200, B2W);
-        lightBody = createLight(camera.viewportWidth / 2 - 20, 20, 20);
-        pl.attachToBody(lightBody, 0, 0);
     }
 
     @Override
@@ -133,7 +119,7 @@ public class ExampleBox2DWithLight implements ApplicationListener {
             } else {
                 gravity.set(-Gdx.input.getAccelerometerX(), -Gdx.input.getAccelerometerY());
             }
-            if (gravityMem.dst(gravity) > 0.3f){
+            if (gravityMem.dst(gravity) > 0.3f) {
                 gravityMem.set(gravity);
                 world.setGravity(gravity);
                 for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
@@ -172,9 +158,6 @@ public class ExampleBox2DWithLight implements ApplicationListener {
         }
         if (!Gdx.input.isButtonPressed(Buttons.LEFT)) flagMouseLeft = true;
 
-        rayHandler.setCombinedMatrix(camera.combined, camera.position.x, camera.position.y, camera.viewportWidth * camera.zoom, camera.viewportHeight * camera.zoom);
-        rayHandler.updateAndRender();
-
         spriteBatch.begin();
         for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
             Body body = iterator.next();
@@ -192,13 +175,6 @@ public class ExampleBox2DWithLight implements ApplicationListener {
             }
 
         }
-        spriteBatch.end();
-        
-        shapeRenderer.begin(ShapeType.Filled);
-        shapeRenderer.circle(lightBody.getPosition().x * B2W, lightBody.getPosition().y * B2W, lightBody.getFixtureList().get(0).getShape().getRadius() * B2W);
-        shapeRenderer.end();
-        
-        spriteBatch.begin();
         info.setLength(0);
         info.append("FPS: ").append(Gdx.graphics.getFramesPerSecond());
         info.append(" Bodies: ").append(world.getBodyCount());
@@ -211,7 +187,6 @@ public class ExampleBox2DWithLight implements ApplicationListener {
 
         spriteBatch.end();
 
-        
     }
 
     @Override
@@ -227,7 +202,6 @@ public class ExampleBox2DWithLight implements ApplicationListener {
 
     @Override
     public void dispose() {
-        shapeRenderer.dispose();
         spriteBatch.dispose();
         texture.dispose();
         world.dispose();
@@ -256,26 +230,4 @@ public class ExampleBox2DWithLight implements ApplicationListener {
         return body;
     }
 
-    private Body createLight(float x, float y, float radius) {
-        float xb = x * W2B;
-        float yb = y * W2B;
-        float radiusb = radius * W2B;
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(new Vector2(xb * 0.5f, yb * 0.5f));
-        bodyDef.type = BodyType.DynamicBody;
-        bodyDef.bullet = true;
-        bodyDef.gravityScale = -0.1f;
-        Body body = world.createBody(bodyDef);
-        CircleShape circle = new CircleShape();
-        circle.setRadius(radiusb);
-        FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.shape = circle;
-        fixtureDef.density = 50000f;
-        fixtureDef.friction = 0.1f;
-        fixtureDef.restitution = 0.3f; // Make it bounce a little bit
-        body.createFixture(fixtureDef);
-        body.setUserData(new float[] { radiusb, radiusb, 1, 1, 1 });
-        circle.dispose();
-        return body;
-    }
 }

@@ -1,12 +1,13 @@
 package cz.nkd.lim.example.runner;
 
+
 /**
- * @author NkD
+ * @author Michal NkD Nikodim
  *
  */
 public enum ExampleGroup {
     
-    NkD(Example.BOX2D_WITH_LIGHT),
+    NkD(Example.BOX2D, Example.BOX2D_WITH_LIGHT),
     DERHAA(Example.D1, Example.D2, Example.D3)
     ;
     

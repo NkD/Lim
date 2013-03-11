@@ -8,8 +8,9 @@ import android.widget.ExpandableListView;
 import android.widget.Toast;
 import cz.nkd.lim.R;
 
+
 /**
- * @author NkD
+ * @author Michal NkD Nikodim
  *
  */
 public class ExamplesActivity extends ExpandableListActivity {
@@ -24,6 +25,8 @@ public class ExamplesActivity extends ExpandableListActivity {
         mExamplesListAdapter = new ExamplesListAdapter(this);
 
         this.setListAdapter(mExamplesListAdapter);
+        
+        getExpandableListView().expandGroup(ExampleGroup.NkD.ordinal());
     }
 
     @Override

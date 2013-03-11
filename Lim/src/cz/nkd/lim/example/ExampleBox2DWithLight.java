@@ -1,4 +1,4 @@
-package cz.nkd.lim;
+package cz.nkd.lim.example;
 
 import java.util.Iterator;
 

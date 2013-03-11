@@ -3,7 +3,13 @@ package cz.nkd.lim;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
-public class Main {
+import cz.nkd.lim.example.ExampleBox2DWithLight;
+
+/**
+ * @author Michal NkD Nikodim
+ *
+ */
+public class Box2DWithLights {
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "Lim";

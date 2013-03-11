@@ -12,7 +12,7 @@ import android.widget.TextView;
 import cz.nkd.lim.R;
 
 /**
- * @author NkD
+ * @author Michal NkD Nikodim
  *
  */
 public class ExamplesListAdapter extends BaseExpandableListAdapter{

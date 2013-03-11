@@ -5,7 +5,6 @@ import android.os.Bundle;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 
-import cz.nkd.lim.ExampleBox2DWithLight;
 
 public class Box2DWithLight extends AndroidApplication {
     @Override

@@ -7,7 +7,7 @@ package cz.nkd.lim.example.runner;
  */
 public enum ExampleGroup {
     
-    NkD(Example.BOX2D, Example.BOX2D_WITH_LIGHT),
+    NkD(Example.BOX2D, Example.BOX2D_WITH_LIGHT, Example.BOX2D_MOUSEJOINT, Example.BOX2D_FIXED_TIMESTEP),
     DERHAA(Example.D1, Example.D2, Example.D3)
     ;
     

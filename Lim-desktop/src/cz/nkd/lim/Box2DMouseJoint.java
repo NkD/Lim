@@ -16,7 +16,7 @@ public class Box2DMouseJoint {
         cfg.useGL20 = true;
         cfg.width = 800;
         cfg.height = 480;
-        cfg.vSyncEnabled = false;
+        cfg.vSyncEnabled = true;
         new LwjglApplication(new ExampleBox2DMouseJoint(), cfg);
     }
 }

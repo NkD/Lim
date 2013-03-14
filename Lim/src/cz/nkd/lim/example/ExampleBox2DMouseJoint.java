@@ -23,7 +23,6 @@ import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.physics.box2d.JointDef.JointType;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -38,7 +37,7 @@ import com.badlogic.gdx.physics.box2d.joints.MouseJointDef;
  */
 public class ExampleBox2DMouseJoint implements ApplicationListener {
 
-    static final float MAX_BOX_STEP = 1 / 60f;
+    static final float BOX_STEP = 1 / 60f;
     static final int BOX_VELOCITY_ITERATIONS = 6;
     static final int BOX_POSITION_ITERATIONS = 2;
     static final float W2B = 0.01f;
@@ -53,8 +52,6 @@ public class ExampleBox2DMouseJoint implements ApplicationListener {
     private SpriteBatch spriteBatch;
     private StringBuilder info;
     private BitmapFont font;
-    private long nano = -1;
-    private float step = 1 / 60f;
     private int rotGravityHelper = 0;
     private Vector2 gravity = new Vector2();
     private Vector2 gravityMem = new Vector2();
@@ -86,13 +83,13 @@ public class ExampleBox2DMouseJoint implements ApplicationListener {
         sprite = new Sprite(texture);
 
         world = new World(new Vector2(0, -10), true);
-        world.setAutoClearForces(false);
+       // world.setAutoClearForces(false);
 
         groundBody = createBody(BodyType.StaticBody, 0, 0, sWidth, 2, 1, 0, 0);
         createBody(BodyType.StaticBody, 0, sHeight - 2, sWidth, sHeight, 1, 0, 0);
         createBody(BodyType.StaticBody, 0, 0, 2, sHeight, 1, 0, 0);
         createBody(BodyType.StaticBody, sWidth - 2, 0, sWidth, sHeight, 1, 0, 0);
-        createBody(BodyType.StaticBody, 80, sHeight / 2 - 20, sWidth * 0.5f - 5, sHeight / 2 + 20, 1, 0, 0);
+        //createBody(BodyType.StaticBody, 80, sHeight / 2 - 20, sWidth * 0.5f - 5, sHeight / 2 + 20, 1, 0, 0);
 
         createBody(BodyType.DynamicBody, sWidth / 2 - 100, sHeight / 2 - 100, sWidth / 2 + 100, sHeight / 2 + 100, 0, 1, 0);
 
@@ -126,7 +123,7 @@ public class ExampleBox2DMouseJoint implements ApplicationListener {
                         def.bodyB = touchedBody;
                         def.collideConnected = true;
                         def.target.set(touchTestPoint.x, touchTestPoint.y);
-                        def.maxForce = 1000.0f * touchedBody.getMass();
+                        def.maxForce = 200.0f * touchedBody.getMass();
                         mouseJoint = (MouseJoint) world.createJoint(def);
                         touchedBody.setAwake(true);
                     }
@@ -148,7 +145,7 @@ public class ExampleBox2DMouseJoint implements ApplicationListener {
             public boolean touchUp(int screenX, int screenY, int pointer, int button) {
                 if (button == Input.Buttons.LEFT) {
                     if (mouseJoint != null) {
-                        world.destroyJoint(mouseJoint);
+                        if (!Gdx.input.isButtonPressed(Buttons.RIGHT)) world.destroyJoint(mouseJoint);
                         mouseJoint = null;
                     }
                     touchedBody = null;
@@ -193,13 +190,9 @@ public class ExampleBox2DMouseJoint implements ApplicationListener {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
-        if (nano == -1) nano = System.nanoTime();
-        world.step(step, BOX_VELOCITY_ITERATIONS, BOX_POSITION_ITERATIONS);
-        long now = System.nanoTime();
-        step = (System.nanoTime() - nano) / 1000000000f;
-        nano = now;
-        if (step > MAX_BOX_STEP) step = MAX_BOX_STEP;
-
+        //fixed FPS (vsync) . Because with variable step produce weird behaviour if MouseJoint moving body (slow rotation) 
+        world.step(BOX_STEP, BOX_VELOCITY_ITERATIONS, BOX_POSITION_ITERATIONS);
+      
         if (Gdx.app.getType() == ApplicationType.Android) {
             if (sWidth > sHeight) {
                 gravity.set(Gdx.input.getAccelerometerY(), -Gdx.input.getAccelerometerX());
@@ -289,14 +282,16 @@ public class ExampleBox2DMouseJoint implements ApplicationListener {
         bodyDef.type = bodyType;
         bodyDef.bullet = false;
         bodyDef.angularDamping = 0f;
+        
         Body body = world.createBody(bodyDef);
         PolygonShape box = new PolygonShape();
         box.setAsBox((xb2 - xb1) * 0.5f, (yb2 - yb1) * 0.5f);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = box;
-        fixtureDef.density = 50f;
-        fixtureDef.friction = 0.4f;
-        fixtureDef.restitution = 0.3f; // Make it bounce a little bit
+        fixtureDef.density = 100f;
+        fixtureDef.friction = 0.2f;
+        
+        fixtureDef.restitution = 0f; // Make it bounce a little bit
         body.createFixture(fixtureDef);
         body.setUserData(new float[] { xb2 - xb1, yb2 - yb1, red, green, blue });
         box.dispose();

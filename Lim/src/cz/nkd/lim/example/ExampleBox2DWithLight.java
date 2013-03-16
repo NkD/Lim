@@ -38,7 +38,8 @@ import cz.nkd.lim.rayhandler.RayHandler;
  */
 public class ExampleBox2DWithLight implements ApplicationListener {
 
-    static final float MAX_BOX_STEP = 1 / 60f;
+    static final float BOX_STEP = 1 / 60f;
+    static final long BOX_STEP_NANO = (1000000000 / 60) + 1; // 1/60 sec in nano
     static final int BOX_VELOCITY_ITERATIONS = 6;
     static final int BOX_POSITION_ITERATIONS = 2;
     static final float W2B = 0.01f;
@@ -53,8 +54,6 @@ public class ExampleBox2DWithLight implements ApplicationListener {
     private SpriteBatch spriteBatch;
     private StringBuilder info;
     private BitmapFont font;
-    private long nano = -1;
-    private float step = 1 / 60f;
     private boolean flagMouseLeft = true;
     private boolean flagMouseMiddle = true;
     private int rotGravityHelper = 0;
@@ -63,6 +62,9 @@ public class ExampleBox2DWithLight implements ApplicationListener {
     private Vector2 gravity = new Vector2();
     private Vector2 gravityMem = new Vector2();
 
+    private long currentTime = -1;
+    private long accumulator = 0;
+    
     @Override
     public void create() {
         sWidth = Gdx.graphics.getWidth();
@@ -108,6 +110,8 @@ public class ExampleBox2DWithLight implements ApplicationListener {
         PointLight pl = new PointLight(rayHandler, 500, new Color(1, 1, 1, 0.7f), 10, 200, 200, B2W);
         lightBody = createLight(camera.viewportWidth / 2 - 20, 20, 20);
         pl.attachToBody(lightBody, 0, 0);
+        
+        currentTime = System.nanoTime();
     }
 
     @Override
@@ -120,12 +124,16 @@ public class ExampleBox2DWithLight implements ApplicationListener {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
-        if (nano == -1) nano = System.nanoTime();
-        world.step(step, BOX_VELOCITY_ITERATIONS, BOX_POSITION_ITERATIONS);
-        long now = System.nanoTime();
-        step = (System.nanoTime() - nano) / 1000000000f;
-        nano = now;
-        if (step > MAX_BOX_STEP) step = MAX_BOX_STEP;
+        long newTime = System.nanoTime();
+        long frameTime = (newTime - currentTime);
+        currentTime = newTime;
+        accumulator += frameTime;
+        if (accumulator >= BOX_STEP_NANO) {
+            world.step(BOX_STEP, BOX_VELOCITY_ITERATIONS, BOX_POSITION_ITERATIONS);
+            rayHandler.setCombinedMatrix(camera.combined, camera.position.x, camera.position.y, camera.viewportWidth * camera.zoom, camera.viewportHeight * camera.zoom);
+            rayHandler.update();
+            accumulator -= BOX_STEP_NANO;
+        }
 
         if (Gdx.app.getType() == ApplicationType.Android) {
             if (sWidth > sHeight) {
@@ -172,8 +180,7 @@ public class ExampleBox2DWithLight implements ApplicationListener {
         }
         if (!Gdx.input.isButtonPressed(Buttons.LEFT)) flagMouseLeft = true;
 
-        rayHandler.setCombinedMatrix(camera.combined, camera.position.x, camera.position.y, camera.viewportWidth * camera.zoom, camera.viewportHeight * camera.zoom);
-        rayHandler.updateAndRender();
+       rayHandler.render();
 
         spriteBatch.begin();
         for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {

@@ -17,7 +17,7 @@ public class Box2DFixedTimeStep extends AndroidApplication {
         cfg.useCompass = false;
         cfg.useWakelock = true;
         
-        initialize(new ExampleBox2D(), cfg);
+        initialize(new ExampleBox2DFixedTimeStep(), cfg);
     }
     
 }

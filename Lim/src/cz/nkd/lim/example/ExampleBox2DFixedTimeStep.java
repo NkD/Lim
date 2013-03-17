@@ -34,14 +34,13 @@ public class ExampleBox2DFixedTimeStep implements ApplicationListener {
 
     static final float BOX_STEP_60 = 1 / 60f;
     static final long BOX_STEP_NANO_60 = (1000000000 / 60) + 1; // 1/60 sec in nano
-    
+
     static final float BOX_STEP_120 = 1 / 120f;
     static final long BOX_STEP_NANO_120 = (1000000000 / 120) + 1; // 1/120 sec in nano
 
     static float BOX_STEP = BOX_STEP_60;
     static long BOX_STEP_NANO = BOX_STEP_NANO_60;
-    
-    
+
     static final int BOX_VELOCITY_ITERATIONS = 6;
     static final int BOX_POSITION_ITERATIONS = 2;
     static final float W2B = 0.01f;
@@ -64,6 +63,8 @@ public class ExampleBox2DFixedTimeStep implements ApplicationListener {
     private Body lightBody;
     private Vector2 gravity = new Vector2();
     private Vector2 gravityMem = new Vector2();
+    private float drawTime;
+    private long drawTimeNano;
 
     @Override
     public void create() {
@@ -74,7 +75,7 @@ public class ExampleBox2DFixedTimeStep implements ApplicationListener {
         font = new BitmapFont();
         info = new StringBuilder();
 
-        spriteBatch = new SpriteBatch();
+        spriteBatch = new SpriteBatch(3000, 2);
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.update();
@@ -161,18 +162,19 @@ public class ExampleBox2DFixedTimeStep implements ApplicationListener {
             if (!Gdx.input.isButtonPressed(Buttons.MIDDLE)) flagMouseMiddle = true;
         }
 
-      if ((flagMouseLeft && Gdx.input.isButtonPressed(Buttons.LEFT)) || Gdx.input.isButtonPressed(Buttons.RIGHT)) {
-        flagMouseLeft = Gdx.app.getType() == ApplicationType.Android;
+        if ((flagMouseLeft && Gdx.input.isButtonPressed(Buttons.LEFT)) || Gdx.input.isButtonPressed(Buttons.RIGHT)) {
+            flagMouseLeft = Gdx.app.getType() == ApplicationType.Android;
             Ray pickRay = camera.getPickRay(Gdx.input.getX(), Gdx.input.getY());
-            int halfSize = Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) ? 15 : 10;
+            int halfSize = Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) ? 6 : 10;
             float r = MathUtils.random(0.5f) + 0.5f;
             float g = MathUtils.random(0.5f) + 0.5f;
             float b = MathUtils.random(0.5f) + 0.5f;
             createBody(BodyType.DynamicBody, pickRay.origin.x - halfSize, pickRay.origin.y - halfSize, pickRay.origin.x + halfSize, pickRay.origin.y + halfSize, r, g, b);
-        
-      }
+
+        }
         if (!Gdx.input.isButtonPressed(Buttons.LEFT)) flagMouseLeft = true;
 
+        drawTimeNano = System.nanoTime();
         spriteBatch.begin();
         for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
             Body body = iterator.next();
@@ -190,16 +192,24 @@ public class ExampleBox2DFixedTimeStep implements ApplicationListener {
             }
 
         }
+
+        spriteBatch.end();
+        drawTime = (System.nanoTime() - drawTimeNano) / 1000000000.0f;
+
+        int drawCalls = spriteBatch.renderCalls;
+
+        spriteBatch.begin();
         info.setLength(0);
         info.append("FPS: ").append(Gdx.graphics.getFramesPerSecond());
         info.append(" Bodies: ").append(world.getBodyCount());
-        sprite.setBounds(0, 0, 150, 18);
+        info.append(" DrawCalls: ").append(drawCalls);
+        info.append(" DrawTime: ").append(String.format("%f", drawTime));
+        sprite.setBounds(0, 0, 500, 18);
         sprite.setPosition(3, sHeight - 21);
-        sprite.setColor(0, 0, 0, 0.6f);
+        sprite.setColor(0, 0, 1, 0.6f);
         sprite.setRotation(0);
         sprite.draw(spriteBatch);
         font.draw(spriteBatch, info.toString(), 5, camera.viewportHeight - 5);
-
         spriteBatch.end();
 
     }

@@ -112,7 +112,6 @@ public class ExampleBox2D implements ApplicationListener {
         step = (System.nanoTime() - nano) / 1000000000f;
         nano = now;
         if (step > MAX_BOX_STEP) step = MAX_BOX_STEP;
-
         if (Gdx.app.getType() == ApplicationType.Android) {
             if (sWidth > sHeight) {
                 gravity.set(Gdx.input.getAccelerometerY(), -Gdx.input.getAccelerometerX());

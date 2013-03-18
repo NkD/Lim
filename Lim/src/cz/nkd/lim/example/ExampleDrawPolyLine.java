@@ -1,8 +1,5 @@
 package cz.nkd.lim.example;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
@@ -14,7 +11,6 @@ import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ImmediateModeRenderer20;
 import com.badlogic.gdx.math.Vector3;
 
 /**
@@ -23,15 +19,11 @@ import com.badlogic.gdx.math.Vector3;
  */
 public class ExampleDrawPolyLine implements ApplicationListener {
 
-    private int sWidth;
-    private int sHeight;
     private OrthographicCamera camera;
 
-    private List<Vector3> points = new ArrayList<Vector3>();
     private BitmapFont font;
     private StringBuilder info;
     private SpriteBatch batch;
-    private ImmediateModeRenderer20 ren;
     private Mesh lineMesh;
     private float[] lineVertices;
     private int vertexIndex = 0;
@@ -40,9 +32,7 @@ public class ExampleDrawPolyLine implements ApplicationListener {
 
     @Override
     public void create() {
-        sWidth = Gdx.graphics.getWidth();
-        sHeight = Gdx.graphics.getHeight();
-
+  
         font = new BitmapFont();
         info = new StringBuilder();
         batch = new SpriteBatch();
@@ -158,8 +148,9 @@ public class ExampleDrawPolyLine implements ApplicationListener {
 
     @Override
     public void resize(int width, int height) {
-        // TODO Auto-generated method stub
-
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera.position.set( Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
+        camera.update();
     }
 
     @Override
@@ -171,6 +162,7 @@ public class ExampleDrawPolyLine implements ApplicationListener {
         if (vertexIndex >= 4) lineMesh.render(GL10.GL_LINE_STRIP);
         pointMesh.render(GL10.GL_LINE_LOOP);
         
+        batch.setProjectionMatrix(camera.combined);
         batch.begin();
         info.setLength(0);
         info.append("FPS: ").append(Gdx.graphics.getFramesPerSecond());

@@ -98,7 +98,9 @@ public class ExampleBox2D implements ApplicationListener {
 
     @Override
     public void resize(int width, int height) {
-        //nothing
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera.position.set( Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
+        camera.update();
     }
 
     @Override
@@ -157,6 +159,7 @@ public class ExampleBox2D implements ApplicationListener {
         }
         if (!Gdx.input.isButtonPressed(Buttons.LEFT)) flagMouseLeft = true;
 
+        spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();
         for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
             Body body = iterator.next();

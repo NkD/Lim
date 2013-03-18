@@ -91,7 +91,7 @@ public class ExampleBox2DMouseJoint implements ApplicationListener {
         createBody(BodyType.StaticBody, sWidth - 2, 0, sWidth, sHeight, 1, 0, 0);
         //createBody(BodyType.StaticBody, 80, sHeight / 2 - 20, sWidth * 0.5f - 5, sHeight / 2 + 20, 1, 0, 0);
 
-        createBody(BodyType.DynamicBody, sWidth / 2 - 100, sHeight / 2 - 100, sWidth / 2 + 100, sHeight / 2 + 100, 0, 1, 0);
+        createBody(BodyType.DynamicBody, sWidth / 2 - 50, sHeight / 2 - 50, sWidth / 2 + 50, sHeight / 2 + 50, 0, 1, 0);
 
         final QueryCallback callback = new QueryCallback() {
             @Override
@@ -112,6 +112,7 @@ public class ExampleBox2DMouseJoint implements ApplicationListener {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 //camera.unproject(touchTestPoint.set(screenX, screenY, 0));
+                System.out.println("touchDown");
                 if (button == Input.Buttons.LEFT) {
                     Ray pickRay = camera.getPickRay(screenX, screenY);
                     touchTestPoint.set(pickRay.origin.x * W2B, pickRay.origin.y * W2B, 0);
@@ -182,7 +183,9 @@ public class ExampleBox2DMouseJoint implements ApplicationListener {
 
     @Override
     public void resize(int width, int height) {
-        //nothing
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera.position.set( Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
+        camera.update();
     }
 
     @Override
@@ -227,6 +230,7 @@ public class ExampleBox2DMouseJoint implements ApplicationListener {
             if (!Gdx.input.isButtonPressed(Buttons.MIDDLE)) flagMouseMiddle = true;
         }
 
+        spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();
         for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
             Body body = iterator.next();
@@ -288,10 +292,10 @@ public class ExampleBox2DMouseJoint implements ApplicationListener {
         box.setAsBox((xb2 - xb1) * 0.5f, (yb2 - yb1) * 0.5f);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = box;
-        fixtureDef.density = 100f;
-        fixtureDef.friction = 0.2f;
+        fixtureDef.density = 1f;
+        fixtureDef.friction = 0.1f;
         
-        fixtureDef.restitution = 0f; // Make it bounce a little bit
+        fixtureDef.restitution = 0.7f; // Make it bounce a little bit
         body.createFixture(fixtureDef);
         body.setUserData(new float[] { xb2 - xb1, yb2 - yb1, red, green, blue });
         box.dispose();

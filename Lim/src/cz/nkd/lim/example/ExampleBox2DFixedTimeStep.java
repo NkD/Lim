@@ -76,8 +76,9 @@ public class ExampleBox2DFixedTimeStep implements ApplicationListener {
         info = new StringBuilder();
 
         spriteBatch = new SpriteBatch(3000, 2);
-        camera = new OrthographicCamera();
+        camera =  new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera.position.set(sWidth / 2, sHeight / 2, 0);
         camera.update();
 
         Pixmap pm = new Pixmap(1, 1, Format.RGB888);
@@ -111,7 +112,9 @@ public class ExampleBox2DFixedTimeStep implements ApplicationListener {
 
     @Override
     public void resize(int width, int height) {
-        //nothing
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera.position.set( Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
+        camera.update();
     }
 
     @Override
@@ -173,8 +176,10 @@ public class ExampleBox2DFixedTimeStep implements ApplicationListener {
 
         }
         if (!Gdx.input.isButtonPressed(Buttons.LEFT)) flagMouseLeft = true;
-
+        
         drawTimeNano = System.nanoTime();
+        camera.update();
+        spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();
         for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
             Body body = iterator.next();
@@ -209,7 +214,7 @@ public class ExampleBox2DFixedTimeStep implements ApplicationListener {
         sprite.setColor(0, 0, 1, 0.6f);
         sprite.setRotation(0);
         sprite.draw(spriteBatch);
-        font.draw(spriteBatch, info.toString(), 5, camera.viewportHeight - 5);
+        font.draw(spriteBatch, info.toString(), 5, sHeight - 5);
         spriteBatch.end();
 
     }
@@ -227,6 +232,7 @@ public class ExampleBox2DFixedTimeStep implements ApplicationListener {
 
     @Override
     public void dispose() {
+        System.out.println("Dispose");
         spriteBatch.dispose();
         texture.dispose();
         world.dispose();
@@ -248,7 +254,7 @@ public class ExampleBox2DFixedTimeStep implements ApplicationListener {
         fixtureDef.shape = box;
         fixtureDef.density = 50f;
         fixtureDef.friction = 0.4f;
-        fixtureDef.restitution = 0.3f; // Make it bounce a little bit
+        fixtureDef.restitution = 0.1f; // Make it bounce a little bit
         body.createFixture(fixtureDef);
         body.setUserData(new float[] { xb2 - xb1, yb2 - yb1, red, green, blue });
         box.dispose();

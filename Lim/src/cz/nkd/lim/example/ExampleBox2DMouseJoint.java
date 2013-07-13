@@ -30,6 +30,7 @@ import com.badlogic.gdx.physics.box2d.QueryCallback;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.joints.MouseJoint;
 import com.badlogic.gdx.physics.box2d.joints.MouseJointDef;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * @author Michal NkD Nikodim
@@ -205,7 +206,9 @@ public class ExampleBox2DMouseJoint implements ApplicationListener {
             if (gravityMem.dst(gravity) > 0.3f) {
                 gravityMem.set(gravity);
                 world.setGravity(gravity);
-                for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
+                Array<Body> bodies = new Array<Body>();
+                world.getBodies(bodies);
+                for (Iterator<Body> iterator = bodies.iterator(); iterator.hasNext();) {
                     Body body = iterator.next();
                     body.setAwake(true);
                 }
@@ -222,7 +225,9 @@ public class ExampleBox2DMouseJoint implements ApplicationListener {
 
                 world.setGravity(new Vector2(gX, gY));
                 flagMouseMiddle = false;
-                for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
+                Array<Body> bodies = new Array<Body>();
+                world.getBodies(bodies);
+                for (Iterator<Body> iterator = bodies.iterator(); iterator.hasNext();) {
                     Body body = iterator.next();
                     body.setAwake(true);
                 }
@@ -232,7 +237,9 @@ public class ExampleBox2DMouseJoint implements ApplicationListener {
 
         spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();
-        for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
+        Array<Body> bodies = new Array<Body>();
+        world.getBodies(bodies);
+        for (Iterator<Body> iterator = bodies.iterator(); iterator.hasNext();) {
             Body body = iterator.next();
             float[] data = (float[]) body.getUserData();
             sprite.setBounds(0, 0, data[0] * B2W, data[1] * B2W);

@@ -28,6 +28,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 
 import cz.nkd.lim.rayhandler.PointLight;
 import cz.nkd.lim.rayhandler.RayHandler;
@@ -146,7 +147,9 @@ public class ExampleBox2DWithLight implements ApplicationListener {
             if (gravityMem.dst(gravity) > 0.3f){
                 gravityMem.set(gravity);
                 world.setGravity(gravity);
-                for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
+                Array<Body> bodies = new Array<Body>();
+                world.getBodies(bodies);
+                for (Iterator<Body> iterator = bodies.iterator(); iterator.hasNext();) {
                     Body body = iterator.next();
                     body.setAwake(true);
                 }
@@ -163,7 +166,9 @@ public class ExampleBox2DWithLight implements ApplicationListener {
 
                 world.setGravity(new Vector2(gX, gY));
                 flagMouseMiddle = false;
-                for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
+                Array<Body> bodies = new Array<Body>();
+                world.getBodies(bodies);
+                for (Iterator<Body> iterator = bodies.iterator(); iterator.hasNext();) {
                     Body body = iterator.next();
                     body.setAwake(true);
                 }
@@ -185,7 +190,9 @@ public class ExampleBox2DWithLight implements ApplicationListener {
        rayHandler.render();
         spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();
-        for (Iterator<Body> iterator = world.getBodies(); iterator.hasNext();) {
+        Array<Body> bodies = new Array<Body>();
+        world.getBodies(bodies);
+        for (Iterator<Body> iterator = bodies.iterator(); iterator.hasNext();) {
             Body body = iterator.next();
             if (body != lightBody) {
                 float[] data = (float[]) body.getUserData();

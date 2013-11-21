@@ -1,0 +1,1171 @@
+{
+body: {
+	name: BL01,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_17,
+		convexes: [
+			{
+				vertexes: "152.96031,521.42804|154.24663,515.77997|170.68797,513.19696|169.4078,518.44037|158.5288,523.5373",
+				triangles: "0,1,4,4,1,3,3,1,2"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 1,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_18,
+		raster-name: img_0006,
+		corners: "152.7086,511.70795|152.52939,523.44574|170.92735,523.7266|171.10652,511.9887"
+	}
+},
+body: {
+	name: BL02,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_5,
+		convexes: [
+			{
+				vertexes: "144.75256,531.7275|137.22151,527.15924|141.41869,514.26825|160.17328,517.38837|159.28069,523.44745",
+				triangles: "0,1,2,4,0,2,4,2,3"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 1,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_6,
+		raster-name: img_0002,
+		corners: "137.02536,513.7962|136.75356,531.6053|159.95084,531.9594|160.2227,514.1503"
+	}
+},
+body: {
+	name: BL03,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_8,
+		convexes: [
+			{
+				vertexes: "117.416336,522.0683|116.78314,511.12775|125.29962,503.5656|135.29845,503.7182|147.06845,518.8774|141.28374,530.9344|128.51001,529.11993",
+				triangles: "0,1,2,0,2,6,6,2,3,6,3,4,5,6,4"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 1,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_9,
+		raster-name: img_0003,
+		corners: "116.11301,502.6159|115.68671,530.54376|147.28302,531.02606|147.70937,503.09808"
+	}
+},
+body: {
+	name: BL04,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_23,
+		convexes: [
+			{
+				vertexes: "109.36592,505.26532|109.56981,491.90866|116.45552,486.34586|126.04819,486.89713|134.61246,502.41205|135.25787,512.543|123.91086,522.086|116.33032,520.7559",
+				triangles: "0,6,7,5,6,0,5,0,4,4,0,3,3,0,1,3,1,2"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.9,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_24,
+		raster-name: img_0008,
+		corners: "109.66246,485.83725|109.112595,521.86017|135.10957,522.257|135.65948,486.2341"
+	}
+},
+body: {
+	name: BL05,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_29,
+		convexes: [
+			{
+				vertexes: "120.9588,501.31256|109.03436,496.27243|109.36182,474.82053|112.72829,463.941|119.18933,459.99112|128.36978,461.3458|133.86401,468.3121|131.46883,494.1857",
+				triangles: "0,1,7,7,1,2,7,2,6,6,2,3,6,3,4,5,6,4"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.8,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_30,
+		raster-name: img_0010,
+		corners: "109.59047,459.84464|108.960236,501.12933|133.35736,501.5019|133.98758,460.21713"
+	}
+},
+body: {
+	name: BL06,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_35,
+		convexes: [
+			{
+				vertexes: "126.67767,477.16702|115.5161,474.56747|111.61536,468.0305|120.47781,437.80228|128.15106,433.0612|138.51898,435.24362|142.80101,443.0012|133.54485,472.8185",
+				triangles: "0,1,2,7,0,2,2,3,7,7,3,6,6,3,4,6,4,5"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.7,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_36,
+		raster-name: img_0012,
+		corners: "112.15292,432.81693|111.47948,476.93503|142.27588,477.40512|142.94931,433.28714"
+	}
+},
+body: {
+	name: BL07,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_44,
+		convexes: [
+			{
+				vertexes: "132.33485,452.64438|122.01645,447.22385|120.15259,438.2888|127.691574,416.13733|134.16498,411.37793|141.37033,411.08304|147.65218,418.87112|142.82634,446.73184",
+				triangles: "0,1,2,7,0,2,2,3,7,7,3,6,6,3,4,6,4,5"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.6,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_45,
+		raster-name: img_0015,
+		corners: "120.572754,410.76556|119.93634,452.4551|147.53311,452.87637|148.16951,411.18683"
+	}
+},
+body: {
+	name: BL08,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_59,
+		convexes: [
+			{
+				vertexes: "141.79535,428.0521|130.65219,424.23837|127.96384,416.91006|132.27844,396.32874|138.37039,390.34903|147.55077,391.70377|151.47618,396.6218|149.06247,423.70975",
+				triangles: "0,1,2,7,0,2,7,2,6,6,2,3,3,5,6,3,4,5"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.5,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_60,
+		raster-name: img_0020,
+		corners: "128.37775,389.79163|127.797,427.83835|150.99426,428.19247|151.5751,390.1457"
+	}
+},
+body: {
+	name: BL09,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_71,
+		convexes: [
+			{
+				vertexes: "132.53937,373.034|137.81905,367.8516|147.00566,368.8015|151.58885,383.0412|151.75401,398.4279|144.47455,403.57977|132.56241,397.72998",
+				triangles: "0,3,6,6,3,4,3,0,2,5,6,4,2,0,1"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.4,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_72,
+		raster-name: img_0024,
+		corners: "132.23209,366.95663|131.67598,403.38437|151.67366,403.68967|152.22977,367.2619"
+	}
+},
+body: {
+	name: BL10,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_77,
+		convexes: [
+			{
+				vertexes: "128.44298,352.4429|132.52905,346.83737|140.92809,346.96558|147.90485,361.64655|150.08212,376.25427|143.97775,383.04352|135.99722,381.70715|131.69664,375.16394",
+				triangles: "0,3,7,7,3,4,3,0,2,6,7,4,2,0,1,5,6,4"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.3,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_78,
+		raster-name: img_0026,
+		corners: "128.54189,345.96683|127.9796,382.79932|149.97708,383.13507|150.5393,346.30258"
+	}
+},
+body: {
+	name: BL11,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_89,
+		convexes: [
+			{
+				vertexes: "143.65237,349.2138|141.89816,359.30826|137.86765,361.27097|129.91185,358.31558|122.31441,331.8845|124.83147,324.23087|131.22458,324.73334",
+				triangles: "0,3,4,0,4,6,0,2,3,6,4,5,1,2,0"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.2,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_90,
+		raster-name: img_0030,
+		corners: "122.43797,323.78952|121.86955,361.0267|144.26695,361.36862|144.83534,324.13138"
+	}
+},
+body: {
+	name: BL12,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_95,
+		convexes: [
+			{
+				vertexes: "123.72589,333.24948|114.15953,304.76407|132.25465,324.8778|133.74942,331.78302|130.10037,334.96616",
+				triangles: "0,1,2,4,0,2,3,4,2"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.1,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_96,
+		raster-name: img_0032,
+		corners: "114.171906,303.9546|113.702286,334.71585|134.09993,335.02725|134.56947,304.26602"
+	}
+},
+body: {
+	name: BR01,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_20,
+		convexes: [
+			{
+				vertexes: "307.58884,519.642|306.8754,513.9631|323.60553,518.67194|321.1069,525.11127",
+				triangles: "0,1,2,3,0,2"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 1,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_21,
+		raster-name: img_0007,
+		corners: "306.08786,513.1414|305.9087,524.87933|324.30655,525.1601|324.4857,513.4223"
+	}
+},
+body: {
+	name: BR02,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_11,
+		convexes: [
+			{
+				vertexes: "334.7425,533.5184|316.89905,523.1248|319.40378,516.28046|335.01437,515.7093|340.09015,523.8835",
+				triangles: "0,1,3,3,1,2,0,3,4"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 1,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_12,
+		raster-name: img_0004,
+		corners: "317.01645,515.4345|316.74454,533.2437|339.94183,533.59784|340.2137,515.78864"
+	}
+},
+body: {
+	name: BR03,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_14,
+		convexes: [
+			{
+				vertexes: "340.74222,532.8051|332.7617,531.4688|329.28568,523.31866|343.9682,504.91998|355.52356,507.93036|360.61798,514.89044|359.2698,524.58624",
+				triangles: "0,1,2,3,0,2,3,6,0,6,3,4,6,4,5"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 1,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_15,
+		raster-name: img_0005,
+		corners: "329.56982,504.70026|329.1436,532.6281|360.7399,533.11053|361.1662,505.18256"
+	}
+},
+body: {
+	name: BR04,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_26,
+		convexes: [
+			{
+				vertexes: "355.19717,524.1857|346.0353,521.61676|341.34705,514.258|345.65552,494.08127|360.94025,488.6467|367.65298,494.4172|367.01822,509.7917|359.20905,523.4372",
+				triangles: "0,1,2,2,6,0,7,0,6,3,6,2,5,6,3,4,5,3"
+			},
+			{
+				vertexes: "360.94025,488.6467|345.65552,494.08127|351.3352,488.905",
+				triangles: "0,1,2"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.9,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_27,
+		raster-name: img_0009,
+		corners: "341.74872,487.949|341.1988,523.972|367.19577,524.36896|367.7456,488.3458"
+	}
+},
+body: {
+	name: BR05,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_32,
+		convexes: [
+			{
+				vertexes: "344.02408,470.2419|352.14053,462.67368|362.127,463.6359|368.3162,477.49515|367.98874,498.94696|357.51578,503.64545|345.6284,496.17654",
+				triangles: "0,3,6,4,6,3,1,3,0,5,6,4,2,3,1"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.8,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_33,
+		raster-name: img_0011,
+		corners: "344.14767,462.14682|343.51746,503.43158|367.91452,503.80402|368.54477,462.51932"
+	}
+},
+body: {
+	name: BR06,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_38,
+		convexes: [
+			{
+				vertexes: "366.9194,469.37772|364.8084,476.63266|356.74133,480.96292|345.99203,477.56003|336.41333,449.8842|338.1429,441.40872|345.4162,436.6616|356.9716,439.67197",
+				triangles: "0,3,4,7,0,4,0,2,3,6,7,4,1,2,0,6,4,5"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.7,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_39,
+		raster-name: img_0013,
+		corners: "336.61722,436.52725|335.94376,480.64536|366.74014,481.1155|367.41367,436.99747"
+	}
+},
+body: {
+	name: BR07,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_47,
+		convexes: [
+			{
+				vertexes: "331.3057,426.90146|338.315,413.2436|349.86423,416.65866|358.6924,441.08438|354.926,451.95767|346.4775,455.06754|336.55286,450.05783",
+				triangles: "0,3,6,3,5,6,3,0,2,4,5,3,2,0,1"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.6,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_48,
+		raster-name: img_0016,
+		corners: "331.51578,413.13983|330.87936,454.82944|358.47617,455.2507|359.11258,413.5611"
+	}
+},
+body: {
+	name: BR08,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_62,
+		convexes: [
+			{
+				vertexes: "329.60663,397.39078|335.68625,392.22064|343.6791,392.7475|348.39206,398.48727|352.0394,421.6193|341.5109,429.96024|331.5615,426.56967",
+				triangles: "0,3,6,6,3,4,1,3,0,5,6,4,2,3,1"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.5,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_63,
+		raster-name: img_0021,
+		corners: "329.29318,391.7182|328.71234,429.76492|351.9097,430.11905|352.49048,392.0723"
+	}
+},
+body: {
+	name: BR09,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_74,
+		convexes: [
+			{
+				vertexes: "341.12122,405.02893|329.20297,399.584|331.1673,375.728|336.06564,369.32516|344.85843,369.8643|349.55902,376.41354|348.4069,399.47226",
+				triangles: "0,1,6,1,2,6,6,2,5,5,2,4,2,3,4"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.4,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_75,
+		raster-name: img_0025,
+		corners: "329.6787,368.418|329.12262,404.84576|349.1203,405.151|349.6764,368.7233"
+	}
+},
+body: {
+	name: BR10,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_80,
+		convexes: [
+			{
+				vertexes: "342.8431,382.589|334.07507,380.43094|331.80508,371.89447|337.3134,351.73624|342.5993,346.14905|351.7735,347.90845|354.0558,355.63544|349.3227,377.4249",
+				triangles: "0,1,2,7,0,2,7,2,6,6,2,3,6,3,4,6,4,5"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.3,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_81,
+		raster-name: img_0027,
+		corners: "332.2067,345.58557|331.6444,382.41806|353.64188,382.7538|354.20413,345.92136"
+	}
+},
+body: {
+	name: BR11,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_92,
+		convexes: [
+			{
+				vertexes: "347.38882,360.56686|338.65784,355.9802|339.1937,347.08182|353.95654,323.42114|360.70633,326.76297|354.27454,355.00412",
+				triangles: "0,1,5,1,2,5,5,2,4,4,2,3"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.2,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_93,
+		raster-name: img_0031,
+		corners: "338.35837,323.18307|337.78995,360.42032|360.18735,360.76224|360.75577,323.52493"
+	}
+},
+body: {
+	name: BR12,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 0.5,
+	fixture-polygon: {
+		name: Fixture_Polygon_98,
+		convexes: [
+			{
+				vertexes: "357.63223,333.16025|350.47018,330.6218|350.15054,325.35394|368.50064,302.55774",
+				triangles: "0,1,2,3,0,2"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.1,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_99,
+		raster-name: img_0033,
+		corners: "350.10278,302.2769|349.6332,333.0381|370.03082,333.3495|370.50043,302.58826"
+	}
+},
+body: {
+	name: Ankle_L,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 1,
+	fixture-polygon: {
+		name: Fixture_Polygon_83,
+		convexes: [
+			{
+				vertexes: "227.18484,295.73895|232.15729,284.47903|238.13187,286.18967|240.3339,299.1784|235.84169,305.18256|229.06725,303.45972",
+				triangles: "0,3,5,4,5,3,3,0,2,2,0,1"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 2,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_84,
+		raster-name: img_0028,
+		corners: "227.37022,283.59637|227.04272,305.04822|240.24124,305.24963|240.56868,283.79782"
+	}
+},
+body: {
+	name: Leg_L,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 1,
+	fixture-polygon: {
+		name: Fixture_Polygon_65,
+		convexes: [
+			{
+				vertexes: "232.94925,355.19885|225.13644,351.30576|225.92117,299.90213|241.1441,298.51514|240.7717,349.11533",
+				triangles: "0,1,4,1,2,4,4,2,3"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 1,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_66,
+		raster-name: img_0022,
+		corners: "225.17067,296.65186|224.26859,355.74576|240.66669,355.99612|241.56876,296.90222"
+	}
+},
+body: {
+	name: Hand_L,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 1,
+	fixture-polygon: {
+		name: Fixture_Polygon_53,
+		convexes: [
+			{
+				vertexes: "188.21776,393.84045|185.10463,388.12506|204.82591,380.32916|230.79819,382.34503|234.74213,386.04883|231.43742,392.88086|212.97162,397.05228",
+				triangles: "0,1,2,0,2,6,6,2,3,6,3,5,5,3,4"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 1,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_54,
+		raster-name: img_0018,
+		corners: "185.2282,380.03003|184.97491,396.62488|234.56912,397.38193|234.82245,380.78705"
+	}
+},
+body: {
+	name: Ankle_R,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 1,
+	fixture-polygon: {
+		name: Fixture_Polygon_86,
+		convexes: [
+			{
+				vertexes: "244.14453,295.18814|246.68016,286.3202|251.51666,283.96497|256.61105,290.92508|257.26886,300.24655|253.189,305.44736|246.0207,303.3137",
+				triangles: "0,4,6,5,6,4,4,0,3,3,0,1,1,2,3"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 2,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_87,
+		raster-name: img_0029,
+		corners: "244.3175,283.85504|243.99002,305.3069|257.18848,305.50842|257.51602,284.0565"
+	}
+},
+body: {
+	name: Leg_R,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 1,
+	fixture-polygon: {
+		name: Fixture_Polygon_68,
+		convexes: [
+			{
+				vertexes: "249.6148,355.58917|242.65839,349.29132|246.11752,296.97165|258.06674,300.39282|258.1128,349.7849",
+				triangles: "0,1,4,1,3,4,1,2,3"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 1,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_69,
+		raster-name: img_0023,
+		corners: "242.51791,296.91666|241.61581,356.01062|258.01392,356.26093|258.91605,297.16702"
+	}
+},
+body: {
+	name: Hand_R,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 1,
+	fixture-polygon: {
+		name: Fixture_Polygon_56,
+		convexes: [
+			{
+				vertexes: "258.84076,396.13306|246.92862,390.28336|247.01517,384.6168|257.88187,380.32944|286.2662,381.5724|297.7722,387.82077|295.2736,394.2602|282.8318,396.90414",
+				triangles: "0,1,3,1,2,3,7,0,3,4,7,3,7,4,6,6,4,5"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 1,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_57,
+		raster-name: img_0019,
+		corners: "246.68317,380.1585|246.436,396.34854|298.02997,397.13617|298.2772,380.94604"
+	}
+},
+body: {
+	name: Neck,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 1,
+	fixture-polygon: {
+		name: Fixture_Polygon_41,
+		convexes: [
+			{
+				vertexes: "233.91707,391.5565|237.91826,382.71378|244.28662,384.8352|246.03992,392.2144|244.58963,410.06778|235.37018,409.80527",
+				triangles: "0,3,5,4,5,3,3,0,2,2,0,1"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.5,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_42,
+		raster-name: img_0014,
+		corners: "233.9249,382.2479|233.4862,410.98544|245.88478,411.17468|246.32346,382.4372"
+	}
+},
+body: {
+	name: Head,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 1,
+	fixture-polygon: {
+		name: Fixture_Polygon_2,
+		convexes: [
+			{
+				vertexes: "170.58615,521.88715|165.79906,521.00433|164.34755,511.2658|169.59631,508.10712",
+				triangles: "0,1,2,0,2,3"
+			},
+			{
+				vertexes: "193.3592,418.9987|272.286,411.29688|293.21783,429.0248|304.58286,523.123|170.58615,521.88715|169.59631,508.10712|169.46992,463.9769|177.82736,440.62326",
+				triangles: "0,4,5,0,5,6,2,4,0,6,7,0,0,1,2,4,2,3"
+			},
+			{
+				vertexes: "166.29951,488.21927|169.46992,463.9769|169.59631,508.10712",
+				triangles: "0,1,2"
+			},
+			{
+				vertexes: "193.3592,418.9987|210.33029,407.922|230.82675,401.75735|250.8121,402.87213|272.286,411.29688",
+				triangles: "0,1,4,1,3,4,1,2,3"
+			},
+			{
+				vertexes: "307.59882,508.99933|304.58286,523.123|293.21783,429.0248|303.3571,446.1832|308.23523,467.30972",
+				triangles: "0,1,2,4,0,2,4,2,3"
+			},
+			{
+				vertexes: "304.58286,523.123|301.5793,536.43695|291.36423,550.4506|271.98724,561.8953|235.5668,562.9589|193.27063,555.83575|179.05763,543.4733|170.58615,521.88715",
+				triangles: "0,4,7,7,4,5,0,3,4,6,7,5,2,3,0,1,2,0"
+			},
+			{
+				vertexes: "304.58286,523.123|307.59882,508.99933|312.75494,511.91193|309.78226,523.20233",
+				triangles: "0,1,2,3,0,2"
+			},
+			{
+				vertexes: "211.94482,564.2177|193.27063,555.83575|235.5668,562.9589|228.71819,566.0931",
+				triangles: "0,1,2,3,0,2"
+			},
+			{
+				vertexes: "255.11508,566.49603|235.5668,562.9589|271.98724,561.8953",
+				triangles: "0,1,2"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.1,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_3,
+		raster-name: img_0001,
+		corners: "166.0405,400.36356|163.52576,565.09784|311.90848,567.363|314.42322,402.62866"
+	}
+},
+body: {
+	name: Torso,
+	body-type: DynamicBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 1,
+	fixture-polygon: {
+		name: Fixture_Polygon_50,
+		convexes: [
+			{
+				vertexes: "231.69385,397.3683|224.66083,377.76312|224.89182,345.03912|241.48825,342.18964|257.288,345.5337|257.19366,377.92007|240.19174,391.02045",
+				triangles: "0,1,6,6,1,5,3,5,1,1,2,3,4,5,3"
+			},
+			{
+				vertexes: "249.70413,396.83347|240.19174,391.02045|257.19366,377.92007",
+				triangles: "0,1,2"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 0.5,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	},
+	texture: {
+		name: Texture_51,
+		raster-name: img_0017,
+		corners: "224.94124,341.80118|224.09476,397.25232|256.8909,397.75293|257.7374,342.30182"
+	}
+},
+body: {
+	name: Border,
+	body-type: StaticBody,
+	active: true,
+	allow-sleep: true,
+	awake: true,
+	bullet: false,
+	fixed-rotation: false,
+	angular-damping: 0,
+	linear-damping: 0,
+	gravity-scale: 1,
+	fixture-polygon: {
+		name: Fixture_rect_polygon_274,
+		convexes: [
+			{
+				vertexes: "0.0,800.0|10.0,790.0|470.0,790.0|480.0,800.0",
+				triangles: "0,1,3,1,2,3"
+			},
+			{
+				vertexes: "0.0,800.0|0.0,0.0|10.0,10.0|10.0,790.0",
+				triangles: "0,1,3,1,2,3"
+			},
+			{
+				vertexes: "470.0,790.0|470.0,10.0|480.0,0.0|480.0,800.0",
+				triangles: "0,2,3,0,1,2"
+			},
+			{
+				vertexes: "10.0,10.0|0.0,0.0|480.0,0.0|470.0,10.0",
+				triangles: "0,1,2,3,0,2"
+			}
+		],
+		friction: 0.1,
+		restitution: 0.3,
+		density: 1,
+		sensor: false,
+		group-index: 0,
+		category-bits: 1,
+		mask-bits: -1
+	}
+}
+}

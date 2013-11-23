@@ -211,11 +211,11 @@ public class ExampleLim implements ApplicationListener {
         accumulator += frameTime;
         if (accumulator >= BOX_STEP_NANO) {
             world.step(BOX_STEP, BOX_VELOCITY_ITERATIONS, BOX_POSITION_ITERATIONS);
-            for (Entry<String, FixturePolygon> entry : loader.fixturePolygons.entries()) {
-                entry.value.updatePosAlongBox2D(B2W, W2B);
+            for (FixturePolygon fp : loader.fixturePolygons) {
+                fp.updatePosAlongBox2D(B2W, W2B);
             }
-            for (Entry<String, Tex> entry : loader.texs.entries()) {
-                entry.value.updatePosAlongBox2D(B2W, W2B);
+            for (Tex tex : loader.texs) {
+                tex.updatePosAlongBox2D(B2W, W2B);
             }
             accumulator -= BOX_STEP_NANO;
         }
@@ -261,14 +261,13 @@ public class ExampleLim implements ApplicationListener {
         spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();
         ren.setColor(cGreen);
-        for (Entry<String, FixturePolygon> entry : loader.fixturePolygons.entries()) {
-            FixturePolygon fp = entry.value;
+        for (FixturePolygon fp : loader.fixturePolygons) {
             for (Triangle t : fp.getTriangles()) {
                 ren.triangleFill(t);
             }
         }
-        for (Entry<String, Tex> entry : loader.texs.entries()) {
-            entry.value.draw(spriteBatch);
+        for (Tex tex : loader.texs) {
+            tex.draw(spriteBatch);
         }
 
         spriteBatch.end();

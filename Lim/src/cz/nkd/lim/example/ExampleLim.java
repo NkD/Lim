@@ -6,8 +6,8 @@ import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Buttons;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -23,20 +23,17 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.QueryCallback;
-import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.joints.MouseJoint;
 import com.badlogic.gdx.physics.box2d.joints.MouseJointDef;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.ObjectMap.Entry;
 
-import cz.nkd.veced.VeLoader;
+import cz.nkd.veced.VeLoader2;
 import cz.nkd.veced.VeRenderer;
-import cz.nkd.veced.geom.FixturePolygon;
-import cz.nkd.veced.geom.Tex;
-import cz.nkd.veced.geom.Triangle;
+import cz.nkd.veced.scene.VeScene;
+import cz.nkd.veced.tool.TouchInteractive;
 
 /**
  * @author Michal NkD Nikodim
@@ -51,7 +48,6 @@ public class ExampleLim implements ApplicationListener {
     static final float W2B = 0.02f;
     static final float B2W = 50;
 
-    private World world;
     private float sWidth, sHeight;
     private OrthographicCamera camera;
     private SpriteBatch spriteBatch;
@@ -62,16 +58,10 @@ public class ExampleLim implements ApplicationListener {
     private Vector2 gravity = new Vector2();
     private Vector2 gravityMem = new Vector2();
 
-    private long currentTime = -1;
-    private long accumulator = 0;
-    private VeLoader loader;
-    private VeRenderer ren;
-    private Color cGreen = new Color(0, 1, 0, 0.6f);
-
-    private Vector3 touchTestPoint = new Vector3();
-    private Vector2 touchTarget = new Vector2();
-    private Body touchedBody = null;
-    private Body groundBody;
+    private VeScene scene;
+    private VeRenderer renderer;
+    private TouchInteractive touchInteractive;
+   
 
     @Override
     public void create() {
@@ -89,108 +79,15 @@ public class ExampleLim implements ApplicationListener {
         TextureRegion whitePixel = new TextureRegion(new Texture(pm));
         pm.dispose();
 
-        ren = new VeRenderer(spriteBatch, whitePixel, font);
+        renderer = new VeRenderer(spriteBatch, whitePixel, font);
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.update();
 
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("lim_test/export.atlas"));
 
-        loader = new VeLoader(Gdx.files.internal("lim_test/export.json"), atlas);
-        world = loader.world;
-        world.setAutoClearForces(false);
-        BodyDef bd = new BodyDef();
-        bd.type = BodyType.StaticBody;
-        groundBody = world.createBody(bd);
-
-        final QueryCallback callback = new QueryCallback() {
-            @Override
-            public boolean reportFixture(Fixture fixture) {
-                if (fixture.getBody().getType() == BodyType.StaticBody) return true;
-                if (fixture.testPoint(touchTestPoint.x, touchTestPoint.y)) {
-                    touchedBody = fixture.getBody();
-                    return false;
-                } else
-                    return true;
-            }
-        };
-
-        Gdx.input.setInputProcessor(new InputProcessor() {
-
-            private MouseJoint mouseJoint;
-
-            @Override
-            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                //camera.unproject(touchTestPoint.set(screenX, screenY, 0));
-                System.out.println("touchDown");
-                if (button == Input.Buttons.LEFT) {
-                    Ray pickRay = camera.getPickRay(screenX, screenY);
-                    touchTestPoint.set(pickRay.origin.x * W2B, pickRay.origin.y * W2B, 0);
-                    System.out.println(pickRay.origin.x + ", " + pickRay.origin.y);
-                    world.QueryAABB(callback, touchTestPoint.x - 0.1f, touchTestPoint.y - 0.1f, touchTestPoint.x + 0.1f, touchTestPoint.y + 0.1f);
-                    if (touchedBody != null) {
-                        MouseJointDef def = new MouseJointDef();
-                        def.bodyA = groundBody;
-                        def.bodyB = touchedBody;
-                        def.collideConnected = true;
-                        def.target.set(touchTestPoint.x, touchTestPoint.y);
-                        def.maxForce = 200.0f * touchedBody.getMass();
-                        mouseJoint = (MouseJoint) world.createJoint(def);
-                        touchedBody.setAwake(true);
-                    }
-                }
-                return false;
-            }
-
-            @Override
-            public boolean touchDragged(int screenX, int screenY, int pointer) {
-                if (mouseJoint != null) {
-                    Ray pickRay = camera.getPickRay(screenX, screenY);
-                    touchTestPoint.set(pickRay.origin.x * W2B, pickRay.origin.y * W2B, 0);
-                    mouseJoint.setTarget(touchTarget.set(touchTestPoint.x, touchTestPoint.y));
-                }
-                return false;
-            }
-
-            @Override
-            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-                if (button == Input.Buttons.LEFT) {
-                    if (mouseJoint != null) {
-                        if (!Gdx.input.isButtonPressed(Buttons.RIGHT)) world.destroyJoint(mouseJoint);
-                        mouseJoint = null;
-                    }
-                    touchedBody = null;
-                }
-                return false;
-            }
-
-            @Override
-            public boolean scrolled(int amount) {
-                return false;
-            }
-
-            @Override
-            public boolean mouseMoved(int screenX, int screenY) {
-                return false;
-            }
-
-            @Override
-            public boolean keyUp(int keycode) {
-                return false;
-            }
-
-            @Override
-            public boolean keyTyped(char character) {
-                return false;
-            }
-
-            @Override
-            public boolean keyDown(int keycode) {
-                return false;
-            }
-        });
-
-        currentTime = System.nanoTime();
+        scene = new VeLoader2(Gdx.files.internal("lim_test/export.json"), atlas).scene;
+        touchInteractive = new TouchInteractive(scene, camera);
     }
 
     @Override
@@ -205,20 +102,7 @@ public class ExampleLim implements ApplicationListener {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
-        long newTime = System.nanoTime();
-        long frameTime = (newTime - currentTime);
-        currentTime = newTime;
-        accumulator += frameTime;
-        if (accumulator >= BOX_STEP_NANO) {
-            world.step(BOX_STEP, BOX_VELOCITY_ITERATIONS, BOX_POSITION_ITERATIONS);
-            for (FixturePolygon fp : loader.fixturePolygons) {
-                fp.updatePosAlongBox2D(B2W, W2B);
-            }
-            for (Tex tex : loader.texs) {
-                tex.updatePosAlongBox2D(B2W, W2B);
-            }
-            accumulator -= BOX_STEP_NANO;
-        }
+        scene.update();
 
         if (Gdx.app.getType() == ApplicationType.Android) {
             if (sWidth > sHeight) {
@@ -228,9 +112,9 @@ public class ExampleLim implements ApplicationListener {
             }
             if (gravityMem.dst(gravity) > 0.3f) {
                 gravityMem.set(gravity);
-                world.setGravity(gravity);
+                scene.world.setGravity(gravity);
                 Array<Body> bodies = new Array<Body>();
-                world.getBodies(bodies);
+                scene.world.getBodies(bodies);
                 for (Iterator<Body> iterator = bodies.iterator(); iterator.hasNext();) {
                     Body body = iterator.next();
                     body.setAwake(true);
@@ -238,18 +122,18 @@ public class ExampleLim implements ApplicationListener {
             }
         } else {
             if (flagMouseMiddle && Gdx.input.isButtonPressed(Buttons.MIDDLE)) {
-                float gX = world.getGravity().y;
-                float gY = world.getGravity().x;
+                float gX = scene.world.getGravity().y;
+                float gY = scene.world.getGravity().x;
                 rotGravityHelper = 1 - rotGravityHelper;
                 if (rotGravityHelper == 0) {
                     gX = -gX;
                     gY = -gY;
                 }
 
-                world.setGravity(new Vector2(gX, gY));
+                scene.world.setGravity(new Vector2(gX, gY));
                 flagMouseMiddle = false;
                 Array<Body> bodies = new Array<Body>();
-                world.getBodies(bodies);
+                scene.world.getBodies(bodies);
                 for (Iterator<Body> iterator = bodies.iterator(); iterator.hasNext();) {
                     Body body = iterator.next();
                     body.setAwake(true);
@@ -260,22 +144,14 @@ public class ExampleLim implements ApplicationListener {
 
         spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();
-        ren.setColor(cGreen);
-        for (FixturePolygon fp : loader.fixturePolygons) {
-            for (Triangle t : fp.getTriangles()) {
-                ren.triangleFill(t);
-            }
-        }
-        for (Tex tex : loader.texs) {
-            tex.draw(spriteBatch);
-        }
+        scene.draw(spriteBatch, renderer);
 
         spriteBatch.end();
 
         spriteBatch.begin();
         info.setLength(0);
         info.append("FPS: ").append(Gdx.graphics.getFramesPerSecond());
-        info.append(" Bodies: ").append(world.getBodyCount());
+        info.append(" Bodies: ").append(scene.world.getBodyCount());
         font.draw(spriteBatch, info.toString(), 5, camera.viewportHeight - 5);
         spriteBatch.end();
 
@@ -295,7 +171,8 @@ public class ExampleLim implements ApplicationListener {
     @Override
     public void dispose() {
         spriteBatch.dispose();
-        world.dispose();
+        scene.dispose();
+        touchInteractive.dispose();
     }
 
 }

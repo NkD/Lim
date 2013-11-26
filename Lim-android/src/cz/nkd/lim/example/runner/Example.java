@@ -6,7 +6,6 @@ import cz.nkd.lim.example.Box2DFixedTimeStep;
 import cz.nkd.lim.example.Box2DMouseJoint;
 import cz.nkd.lim.example.Box2DWithLight;
 import cz.nkd.lim.example.Lim;
-import cz.nkd.lim.example.Lim2;
 
 
 /**
@@ -20,7 +19,6 @@ public enum Example {
     BOX2D_MOUSEJOINT(Box2DMouseJoint.class),
     BOX2D_FIXED_TIMESTEP(Box2DFixedTimeStep.class),
     LIM(Lim.class),
-    LIM2(Lim2.class),
     D1(null),
     D2(null),
     D3(null), 

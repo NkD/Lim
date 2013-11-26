@@ -27,7 +27,6 @@
         <activity android:name="cz.nkd.lim.example.Box2DMouseJoint" android:screenOrientation="portrait" android:configChanges="keyboard|keyboardHidden|screenSize|orientation" />
         <activity android:name="cz.nkd.lim.example.Box2DFixedTimeStep" android:screenOrientation="portrait" android:configChanges="keyboard|keyboardHidden|screenSize|orientation" />
         <activity android:name="cz.nkd.lim.example.Lim" android:screenOrientation="portrait" android:configChanges="keyboard|keyboardHidden|screenSize|orientation" />
-        <activity android:name="cz.nkd.lim.example.Lim2" android:screenOrientation="portrait" android:configChanges="keyboard|keyboardHidden|screenSize|orientation" />
         
     </application>
 

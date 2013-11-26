@@ -32,8 +32,8 @@ import com.badlogic.gdx.physics.box2d.joints.MouseJointDef;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap.Entry;
 
-import cz.nkd.veced.VecEdLoader;
-import cz.nkd.veced.VecEdRenderer;
+import cz.nkd.veced.VeLoader;
+import cz.nkd.veced.VeRenderer;
 import cz.nkd.veced.geom.FixturePolygon;
 import cz.nkd.veced.geom.Tex;
 import cz.nkd.veced.geom.Triangle;
@@ -64,8 +64,8 @@ public class ExampleLim implements ApplicationListener {
 
     private long currentTime = -1;
     private long accumulator = 0;
-    private VecEdLoader loader;
-    private VecEdRenderer ren;
+    private VeLoader loader;
+    private VeRenderer ren;
     private Color cGreen = new Color(0, 1, 0, 0.6f);
 
     private Vector3 touchTestPoint = new Vector3();
@@ -89,14 +89,14 @@ public class ExampleLim implements ApplicationListener {
         TextureRegion whitePixel = new TextureRegion(new Texture(pm));
         pm.dispose();
 
-        ren = new VecEdRenderer(spriteBatch, whitePixel, font);
+        ren = new VeRenderer(spriteBatch, whitePixel, font);
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.update();
 
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("lim_test/export.atlas"));
 
-        loader = new VecEdLoader(Gdx.files.internal("lim_test/export.json"), atlas);
+        loader = new VeLoader(Gdx.files.internal("lim_test/export.json"), atlas);
         world = loader.world;
         world.setAutoClearForces(false);
         BodyDef bd = new BodyDef();

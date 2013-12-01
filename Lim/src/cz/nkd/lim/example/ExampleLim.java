@@ -30,7 +30,7 @@ import com.badlogic.gdx.physics.box2d.joints.MouseJoint;
 import com.badlogic.gdx.physics.box2d.joints.MouseJointDef;
 import com.badlogic.gdx.utils.Array;
 
-import cz.nkd.veced.VeLoader2;
+import cz.nkd.veced.VeLoader;
 import cz.nkd.veced.VeRenderer;
 import cz.nkd.veced.scene.VeScene;
 import cz.nkd.veced.tool.TouchInteractive;
@@ -86,7 +86,7 @@ public class ExampleLim implements ApplicationListener {
 
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("lim_test/export.atlas"));
 
-        scene = new VeLoader2(Gdx.files.internal("lim_test/export.json"), atlas).scene;
+        scene = new VeLoader(Gdx.files.internal("lim_test/export.json"), atlas).scene;
         touchInteractive = new TouchInteractive(scene, camera);
     }
 

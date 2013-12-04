@@ -70,9 +70,9 @@ public class ExampleLim implements ApplicationListener {
 
         VeRenderer veRenderer = new VeRenderer(spriteBatch, whitePixel, font);
         renderVisitor = new RenderVisitor(veRenderer);
-        renderVisitor.renderFixturesDynamic = false;
-        renderVisitor.renderFixturesKinematic = false;
-        renderVisitor.renderFixturesSensors = false;
+       // renderVisitor.renderFixturesDynamic = false;
+       // renderVisitor.renderFixturesKinematic = false;
+       // renderVisitor.renderFixturesSensors = false;
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

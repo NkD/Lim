@@ -30,6 +30,7 @@ import com.badlogic.gdx.physics.box2d.joints.MouseJoint;
 import com.badlogic.gdx.physics.box2d.joints.MouseJointDef;
 import com.badlogic.gdx.utils.Array;
 
+import cz.nkd.veced.RenderVisitor;
 import cz.nkd.veced.VeLoader;
 import cz.nkd.veced.VeRenderer;
 import cz.nkd.veced.scene.VeScene;
@@ -59,9 +60,8 @@ public class ExampleLim implements ApplicationListener {
     private Vector2 gravityMem = new Vector2();
 
     private VeScene scene;
-    private VeRenderer renderer;
     private TouchInteractive touchInteractive;
-   
+    private RenderVisitor renderVisitor;
 
     @Override
     public void create() {
@@ -79,15 +79,18 @@ public class ExampleLim implements ApplicationListener {
         TextureRegion whitePixel = new TextureRegion(new Texture(pm));
         pm.dispose();
 
-        renderer = new VeRenderer(spriteBatch, whitePixel, font);
+        VeRenderer veRenderer = new VeRenderer(spriteBatch, whitePixel, font);
+        renderVisitor = new RenderVisitor(veRenderer);
+
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.update();
 
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("lim_test/export.atlas"));
 
-        scene = new VeLoader(Gdx.files.internal("lim_test/export.json"), atlas).scene;
+        scene = new VeLoader(Gdx.files.internal("lim_test/export.json"), atlas).veScene;
         touchInteractive = new TouchInteractive(scene, camera);
+        scene.create();
     }
 
     @Override
@@ -102,7 +105,9 @@ public class ExampleLim implements ApplicationListener {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
-        scene.update();
+        if (scene.computeWorldStep()) {
+            scene.update();
+        }
 
         if (Gdx.app.getType() == ApplicationType.Android) {
             if (sWidth > sHeight) {
@@ -144,7 +149,8 @@ public class ExampleLim implements ApplicationListener {
 
         spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();
-        scene.draw(spriteBatch, renderer);
+
+        scene.visit(renderVisitor);
 
         spriteBatch.end();
 
@@ -171,7 +177,7 @@ public class ExampleLim implements ApplicationListener {
     @Override
     public void dispose() {
         spriteBatch.dispose();
-        scene.dispose();
+        scene.destroy();
         touchInteractive.dispose();
     }
 

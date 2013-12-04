@@ -5,10 +5,7 @@ import java.util.Iterator;
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Buttons;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -19,15 +16,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.QueryCallback;
-import com.badlogic.gdx.physics.box2d.joints.MouseJoint;
-import com.badlogic.gdx.physics.box2d.joints.MouseJointDef;
 import com.badlogic.gdx.utils.Array;
 
 import cz.nkd.veced.RenderVisitor;
@@ -81,6 +70,9 @@ public class ExampleLim implements ApplicationListener {
 
         VeRenderer veRenderer = new VeRenderer(spriteBatch, whitePixel, font);
         renderVisitor = new RenderVisitor(veRenderer);
+        renderVisitor.renderFixturesDynamic = false;
+        renderVisitor.renderFixturesKinematic = false;
+        renderVisitor.renderFixturesSensors = false;
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

@@ -102,10 +102,10 @@ public class ExampleLim implements ApplicationListener {
         counter++;
         if (counter == 200) {
             scene.findItem("gear").destroy();
-            System.out.println("DESTROY");
+            //System.out.println("DESTROY");
         } else if (counter == 400) {
             scene.findItem("gear").create();
-            System.out.println("CREATE");
+            //System.out.println("CREATE");
             counter = 0;
         }
 

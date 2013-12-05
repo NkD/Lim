@@ -100,11 +100,11 @@ public class ExampleLim implements ApplicationListener {
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
         counter++;
-        if (counter == 200) {
-            scene.findItem("gear").destroy();
+        if (counter == 600) {
+            scene.findItem("Head").destroy();
             //System.out.println("DESTROY");
-        } else if (counter == 400) {
-            scene.findItem("gear").create();
+        } else if (counter == 1200) {
+            scene.findItem("Head").create();
             //System.out.println("CREATE");
             counter = 0;
         }

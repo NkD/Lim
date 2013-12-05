@@ -11,22 +11,22 @@ body: {
 	linear-damping: 0,
 	gravity-scale: 1,
 	fixture-polygon: {
-		name: Fixture_polygon_2,
+		name: Fixture_polygon_1,
 		convexes: [
 			{
-				vertexes: "0.0,800.0|0.0,0.0|10.0,10.0|10.0,790.0",
+				vertexes: "0.0,800.0|0.0,0.0|5.0,5.0|5.0,795.0",
 				triangles: "0,1,3,1,2,3"
 			},
 			{
-				vertexes: "10.0,10.0|0.0,0.0|480.0,0.0|470.0,10.0",
+				vertexes: "5.0,5.0|0.0,0.0|480.0,0.0|475.0,5.0",
 				triangles: "0,1,2,3,0,2"
 			},
 			{
-				vertexes: "0.0,800.0|10.0,790.0|470.0,790.0|480.0,800.0",
+				vertexes: "0.0,800.0|5.0,795.0|475.0,795.0|480.0,800.0",
 				triangles: "0,1,3,1,2,3"
 			},
 			{
-				vertexes: "470.0,790.0|470.0,10.0|480.0,0.0|480.0,800.0",
+				vertexes: "475.0,795.0|475.0,5.0|480.0,0.0|480.0,800.0",
 				triangles: "0,2,3,0,1,2"
 			}
 		],
@@ -39,366 +39,839 @@ body: {
 		mask-bits: -1
 	}
 },
-body: {
-	name: Body_3,
-	body-type: DynamicBody,
-	active: true,
-	allow-sleep: true,
-	awake: true,
-	bullet: false,
-	fixed-rotation: false,
-	angular-damping: 0,
-	linear-damping: 0,
-	gravity-scale: 1,
-	fixture-circle: {
-		name: Fixture_circle_4,
-		center: "82.22996,614.02106",
-		radius: 63.270706,
-		friction: 0.1,
-		restitution: 0.3,
-		density: 1,
-		sensor: false,
-		group-index: 0,
-		category-bits: 1,
-		mask-bits: -1
-	}
-},
-body: {
-	name: Body_5,
-	body-type: DynamicBody,
-	active: true,
-	allow-sleep: true,
-	awake: true,
-	bullet: false,
-	fixed-rotation: false,
-	angular-damping: 0,
-	linear-damping: 0,
-	gravity-scale: 1,
-	fixture-polygon: {
-		name: Fixture_rect_polygon_6,
-		convexes: [
-			{
-				vertexes: "189.96248,721.75354|189.96248,651.7973|264.11597,651.7973|264.11597,721.75354",
-				triangles: "0,2,3,0,1,2"
+group: {
+	name: revolute,
+	group: {
+		name: revolute1,
+		body: {
+			name: Body_2,
+			body-type: DynamicBody,
+			active: true,
+			allow-sleep: true,
+			awake: true,
+			bullet: false,
+			fixed-rotation: false,
+			angular-damping: 0,
+			linear-damping: 0,
+			gravity-scale: 1,
+			fixture-polygon: {
+				name: Fixture_polygon_3,
+				convexes: [
+					{
+						vertexes: "44.848267,784.9921|13.917694,750.96844|29.38298,713.85175|85.058014,732.4101|63.40663,766.4338",
+						triangles: "0,1,4,1,2,4,4,2,3"
+					},
+					{
+						vertexes: "44.848267,784.9921|63.40663,766.4338|88.15109,788.08514",
+						triangles: "0,1,2"
+					}
+				],
+				friction: 0.1,
+				restitution: 0.3,
+				density: 1,
+				sensor: false,
+				group-index: 0,
+				category-bits: 1,
+				mask-bits: -1
 			}
-		],
-		friction: 0.1,
-		restitution: 0.3,
-		density: 1,
-		sensor: false,
-		group-index: 0,
-		category-bits: 1,
-		mask-bits: -1
-	}
-},
-body: {
-	name: Body_7,
-	body-type: DynamicBody,
-	active: true,
-	allow-sleep: true,
-	awake: true,
-	bullet: false,
-	fixed-rotation: false,
-	angular-damping: 0,
-	linear-damping: 0,
-	gravity-scale: 1,
-	fixture-polygon: {
-		name: Fixture_polygon_8,
-		convexes: [
-			{
-				vertexes: "233.3353,541.2666|194.15985,507.68768|195.55896,460.11746|264.11597,419.54288|268.3134,524.4772",
-				triangles: "0,1,4,4,1,2,4,2,3"
-			},
-			{
-				vertexes: "264.11597,572.0473|210.94934,566.4508|233.3353,541.2666|268.3134,524.4772|320.0809,552.45966",
-				triangles: "0,2,3,0,3,4,1,2,0"
-			},
-			{
-				vertexes: "210.94934,604.2272|210.94934,566.4508|264.11597,572.0473|297.69495,611.2228",
-				triangles: "0,1,2,0,2,3"
-			},
-			{
-				vertexes: "268.3134,524.4772|296.29584,495.09552|320.0809,552.45966",
-				triangles: "0,1,2"
+		},
+		joint-revolute: {
+			name: Joint_revolute_5,
+			body-a: Body_0,
+			body-b: Body_2,
+			collide-connected: true,
+			position: "40.208694,737.04974",
+			enable-limit: false,
+			lower-angle: -45,
+			upper-angle: 45,
+			enable-motor: false,
+			motor-speed: 0.2,
+			max-motor-torque: 1000
+		}
+	},
+	group: {
+		name: revolute2,
+		body: {
+			name: Body_7,
+			body-type: DynamicBody,
+			active: true,
+			allow-sleep: true,
+			awake: true,
+			bullet: false,
+			fixed-rotation: false,
+			angular-damping: 0,
+			linear-damping: 0,
+			gravity-scale: 1,
+			fixture-polygon: {
+				name: Fixture_polygon_8,
+				convexes: [
+					{
+						vertexes: "145.70091,737.2384|123.37799,711.87146|135.55412,690.56323|158.89171,717.95953",
+						triangles: "0,1,3,1,2,3"
+					},
+					{
+						vertexes: "144.6862,764.6347|123.37799,711.87146|145.70091,737.2384",
+						triangles: "0,1,2"
+					},
+					{
+						vertexes: "144.6862,764.6347|145.70091,737.2384|167.00912,737.2384|173.09718,765.6494",
+						triangles: "0,1,2,3,0,2"
+					}
+				],
+				friction: 0.1,
+				restitution: 0.3,
+				density: 1,
+				sensor: false,
+				group-index: 0,
+				category-bits: 1,
+				mask-bits: -1
 			}
-		],
-		friction: 0.1,
-		restitution: 0.3,
-		density: 1,
-		sensor: false,
-		group-index: 0,
-		category-bits: 1,
-		mask-bits: -1
-	}
-},
-body: {
-	name: Body_9,
-	body-type: DynamicBody,
-	active: true,
-	allow-sleep: true,
-	awake: true,
-	bullet: false,
-	fixed-rotation: false,
-	angular-damping: 0,
-	linear-damping: 0,
-	gravity-scale: 1,
-	fixture-polygon: {
-		name: Fixture_gear_10,
-		convexes: [
-			{
-				vertexes: "322.52087,612.3958|323.14288,608.0057|331.55542,606.52704|338.38425,608.07837|337.18262,616.55975|330.19162,616.1531",
-				triangles: "0,1,5,5,1,2,5,2,3,4,5,3"
-			},
-			{
-				vertexes: "339.0092,633.5354|332.2647,635.4199|323.78973,634.3559|322.95306,630.0015|330.4302,625.8724|337.39285,625.12317",
-				triangles: "0,4,5,0,1,4,1,3,4,1,2,3"
-			},
-			{
-				vertexes: "340.965,599.91034|334.4845,597.25653|328.45953,591.1897|330.4619,587.2623|338.91083,588.57513|344.86493,592.26135",
-				triangles: "0,1,5,1,4,5,1,2,4,4,2,3"
-			},
-			{
-				vertexes: "346.25818,649.0154|340.4921,652.9893|332.1178,654.7151|329.92508,650.89075|335.6451,644.5355|341.9876,641.56696",
-				triangles: "0,4,5,0,1,4,1,2,4,2,3,4"
-			},
-			{
-				vertexes: "338.38425,608.07837|340.965,599.91034|344.86493,592.26135|356.1183,579.4211|346.25818,649.0154|341.9876,641.56696|337.39285,625.12317|337.18262,616.55975",
-				triangles: "0,1,7,1,6,7,1,3,6,3,4,6,1,2,3,6,4,5"
-			},
-			{
-				vertexes: "341.9876,641.56696|339.0092,633.5354|337.39285,625.12317",
-				triangles: "0,1,2"
-			},
-			{
-				vertexes: "356.1183,579.4211|349.9598,585.3751|344.69336,580.7595|340.9489,573.0825|344.1367,570.00055|351.68298,574.0019",
-				triangles: "0,1,5,1,2,5,2,4,5,3,4,2"
-			},
-			{
-				vertexes: "353.96396,666.9183|346.62308,671.2851|343.28793,668.3632|346.65115,660.5117|351.6848,655.6433|358.128,661.28796",
-				triangles: "0,4,5,3,4,0,2,3,0,1,2,0"
-			},
-			{
-				vertexes: "349.9598,585.3751|356.1183,579.4211|344.86493,592.26135",
-				triangles: "0,1,2"
-			},
-			{
-				vertexes: "346.25818,649.0154|356.1183,579.4211|363.17245,574.56146|370.93002,570.9287|379.17963,568.62195|407.02914,668.21625|358.128,661.28796|351.6848,655.6433",
-				triangles: "0,1,4,2,4,1,4,7,0,4,2,3,4,6,7,4,5,6"
-			},
-			{
-				vertexes: "358.128,661.28796|407.02914,668.21625|398.77954,670.5231|390.26285,671.44116|381.69144,670.94257|373.3386,669.04333|365.4121,665.7956",
-				triangles: "0,1,2,6,0,2,2,4,6,6,4,5,3,4,2"
-			},
-			{
-				vertexes: "370.93002,570.9287|363.17245,574.56146|359.68927,568.4864|358.63943,560.00964|362.65497,558.1292|368.4939,564.36334",
-				triangles: "0,1,5,1,2,5,5,2,3,5,3,4"
-			},
-			{
-				vertexes: "373.3386,669.04333|371.22754,675.7204|365.7015,682.23346|361.59857,680.55237|362.2312,672.0343|365.4121,665.7956",
-				triangles: "0,4,5,1,4,0,3,4,1,2,3,1"
-			},
-			{
-				vertexes: "377.85693,561.7451|379.64072,553.383|384.0238,552.9114|387.52313,560.7032|387.69635,567.70386|379.17963,568.62195",
-				triangles: "0,4,5,4,0,3,3,0,1,1,2,3"
-			},
-			{
-				vertexes: "379.17963,568.62195|387.69635,567.70386|396.26773,568.20245",
-				triangles: "0,1,2"
-			},
-			{
-				vertexes: "407.02914,668.21625|379.17963,568.62195|396.26773,568.20245|412.54706,573.3494|433.0942,646.88367|427.99936,653.7699|421.8409,659.72394|414.78674,664.58356",
-				triangles: "0,1,6,1,4,6,7,0,6,5,6,4,4,1,3,3,1,2"
-			},
-			{
-				vertexes: "390.26285,671.44116|390.43604,678.44183|387.3007,686.3965|382.89972,686.1405|380.70776,677.876|381.69144,670.94257",
-				triangles: "0,4,5,4,0,1,3,4,1,2,3,1"
-			},
-			{
-				vertexes: "396.26773,568.20245|397.2514,561.26904|401.6305,553.9355|405.92932,554.9121|406.7316,563.4246|404.62054,570.1017",
-				triangles: "0,1,5,5,1,4,1,3,4,3,1,2"
-			},
-			{
-				vertexes: "404.62054,570.1017|412.54706,573.3494|396.26773,568.20245",
-				triangles: "0,1,2"
-			},
-			{
-				vertexes: "409.46527,674.7817|409.08163,683.32336|404.83588,684.5097|400.10223,677.3999|398.77954,670.5231|407.02914,668.21625",
-				triangles: "0,4,5,0,3,4,1,3,0,2,3,1"
-			},
-			{
-				vertexes: "419.83118,577.85706|412.54706,573.3494|415.72797,567.1107|422.2503,561.5956|426.02075,563.92883|423.9952,572.22675",
-				triangles: "0,1,2,5,0,2,5,2,4,4,2,3"
-			},
-			{
-				vertexes: "412.54706,573.3494|419.83118,577.85706|431.701,590.12964|435.97156,597.57806|438.94998,605.6097|440.5663,614.02185|436.99417,639.2347|433.0942,646.88367",
-				triangles: "0,1,7,5,7,1,1,3,5,6,7,5,4,5,3,1,2,3"
-			},
-			{
-				vertexes: "418.26993,670.6586|414.78674,664.58356|421.8409,659.72394|426.27618,665.1431|428.70642,673.3316|425.05502,675.8471",
-				triangles: "0,1,2,0,2,3,0,3,4,5,0,4"
-			},
-			{
-				vertexes: "431.701,590.12964|419.83118,577.85706|426.27435,583.5017",
-				triangles: "0,1,2"
-			},
-			{
-				vertexes: "431.701,590.12964|426.27435,583.5017|431.308,578.6333|439.28424,575.55316|442.0763,578.9646|437.46707,586.15576",
-				triangles: "0,1,2,5,0,2,5,2,3,5,3,4"
-			},
-			{
-				vertexes: "439.04834,650.5699|444.00488,657.5262|441.38358,661.07056|433.26584,658.3855|427.99936,653.7699|433.0942,646.88367",
-				triangles: "0,4,5,3,4,0,2,3,0,1,2,0"
-			},
-			{
-				vertexes: "438.94998,605.6097|435.97156,597.57806|442.31406,594.6095|450.8486,594.26465|452.38217,598.39764|445.69446,603.7251",
-				triangles: "0,1,5,1,2,5,4,5,2,4,2,3"
-			},
-			{
-				vertexes: "440.77655,622.58527|439.57492,631.06665|436.99417,639.2347|440.5663,614.02185",
-				triangles: "0,2,3,0,1,2"
-			},
-			{
-				vertexes: "436.99417,639.2347|439.57492,631.06665|446.40375,632.618|453.34482,637.61084|452.01587,641.81415|443.47467,641.8885",
-				triangles: "0,1,5,5,1,2,3,5,2,4,5,3"
-			},
-			{
-				vertexes: "447.76755,622.9919|440.77655,622.58527|440.5663,614.02185|447.52896,613.27264|455.71335,615.7166|455.82217,620.1493",
-				triangles: "0,1,2,0,2,3,0,3,4,0,4,5"
+		},
+		joint-revolute: {
+			name: Joint_revolute_9,
+			body-a: Body_0,
+			body-b: Body_7,
+			collide-connected: true,
+			position: "142.65688,737.2384",
+			enable-limit: true,
+			lower-angle: -45,
+			upper-angle: 45,
+			enable-motor: false,
+			motor-speed: 0.2,
+			max-motor-torque: 1000
+		}
+	},
+	group: {
+		name: revolute3,
+		body: {
+			name: Body_11,
+			body-type: DynamicBody,
+			active: true,
+			allow-sleep: true,
+			awake: true,
+			bullet: false,
+			fixed-rotation: false,
+			angular-damping: 0,
+			linear-damping: 0,
+			gravity-scale: 1,
+			fixture-polygon: {
+				name: Fixture_polygon_12,
+				convexes: [
+					{
+						vertexes: "221.80173,751.44385|217.74307,729.121|226.87512,710.85675|250.21274,717.9595|239.0513,748.39984",
+						triangles: "0,1,4,4,1,3,3,1,2"
+					},
+					{
+						vertexes: "232.04445,771.51654|221.80173,751.44385|239.0513,748.39984|251.22742,778.84015",
+						triangles: "0,1,2,0,2,3"
+					}
+				],
+				friction: 0.1,
+				restitution: 0.3,
+				density: 1,
+				sensor: false,
+				group-index: 0,
+				category-bits: 1,
+				mask-bits: -1
 			}
-		],
-		friction: 0.1,
-		restitution: 0.3,
-		density: 1,
-		sensor: false,
-		group-index: 0,
-		category-bits: 1,
-		mask-bits: -1
+		},
+		joint-revolute: {
+			name: Joint_revolute_13,
+			body-a: Body_0,
+			body-b: Body_11,
+			collide-connected: false,
+			position: "243.10999,731.15027",
+			enable-limit: false,
+			lower-angle: -45,
+			upper-angle: 45,
+			enable-motor: true,
+			motor-speed: 0.5,
+			max-motor-torque: 1000
+		}
 	}
 },
-body: {
-	name: Body_13,
-	body-type: StaticBody,
-	active: true,
-	allow-sleep: true,
-	awake: true,
-	bullet: false,
-	fixed-rotation: false,
-	angular-damping: 0,
-	linear-damping: 0,
-	gravity-scale: 1,
-	fixture-chain: {
-		name: Fixture_chain_14,
-		vertexes: "97.1024,407.79187|179.9141,390.14352|204.3503,322.26514|103.89024,267.9624|61.80565,365.7073",
-		looped: true,
-		first-ghost: false,
-		last-ghost: false,
-		friction: 0.1,
-		restitution: 0.3,
-		density: 1,
-		sensor: false,
-		group-index: 0,
-		category-bits: 1,
-		mask-bits: -1
+group: {
+	name: distance,
+	body: {
+		name: Body_15,
+		body-type: DynamicBody,
+		active: true,
+		allow-sleep: true,
+		awake: true,
+		bullet: false,
+		fixed-rotation: false,
+		angular-damping: 0,
+		linear-damping: 0,
+		gravity-scale: 1,
+		fixture-polygon: {
+			name: Fixture_rect_polygon_16,
+			convexes: [
+				{
+					vertexes: "337.33905,761.4163|309.3991,761.4163|309.3991,731.6738|337.33905,731.6738",
+					triangles: "0,1,2,0,2,3"
+				}
+			],
+			friction: 0.1,
+			restitution: 0.3,
+			density: 1,
+			sensor: false,
+			group-index: 0,
+			category-bits: 1,
+			mask-bits: -1
+		}
+	},
+	body: {
+		name: Body_17,
+		body-type: DynamicBody,
+		active: true,
+		allow-sleep: true,
+		awake: true,
+		bullet: false,
+		fixed-rotation: false,
+		angular-damping: 0,
+		linear-damping: 0,
+		gravity-scale: 1,
+		fixture-polygon: {
+			name: Fixture_rect_polygon_18,
+			convexes: [
+				{
+					vertexes: "309.3991,699.2275|309.3991,669.48505|337.33902,669.48505|337.33902,699.2275",
+					triangles: "0,2,3,0,1,2"
+				}
+			],
+			friction: 0.1,
+			restitution: 0.3,
+			density: 1,
+			sensor: false,
+			group-index: 0,
+			category-bits: 1,
+			mask-bits: -1
+		}
+	},
+	joint-distance: {
+		name: Joint_distance_19,
+		body-a: Body_15,
+		body-b: Body_0,
+		collide-connected: true,
+		anchor-a: "322.9185,759.6138",
+		anchor-b: "322.9185,797.4678",
+		frequency-hz: 0,
+		damping-ratio: 0
+	},
+	joint-distance: {
+		name: Joint_distance_20,
+		body-a: Body_17,
+		body-b: Body_15,
+		collide-connected: true,
+		anchor-a: "322.9185,696.5237",
+		anchor-b: "322.9185,736.1803",
+		frequency-hz: 0,
+		damping-ratio: 0
 	}
 },
-body: {
-	name: Body_15,
-	body-type: StaticBody,
-	active: true,
-	allow-sleep: true,
-	awake: true,
-	bullet: false,
-	fixed-rotation: false,
-	angular-damping: 0,
-	linear-damping: 0,
-	gravity-scale: 1,
-	fixture-chain: {
-		name: Fixture_chain_16,
-		vertexes: "128.32645,155.28426|169.05348,210.94453|270.8711,168.85994|308.883,239.45346|382.1917,206.87184",
-		looped: false,
-		first-ghost: true,
-		last-ghost: true,
-		friction: 0.1,
-		restitution: 0.3,
-		density: 1,
-		sensor: false,
-		group-index: 0,
-		category-bits: 1,
-		mask-bits: -1
+group: {
+	name: rope,
+	body: {
+		name: Body_23,
+		body-type: DynamicBody,
+		active: true,
+		allow-sleep: true,
+		awake: true,
+		bullet: false,
+		fixed-rotation: false,
+		angular-damping: 0,
+		linear-damping: 0,
+		gravity-scale: 1,
+		fixture-circle: {
+			name: Fixture_circle_24,
+			center: "377.89697,753.30475",
+			radius: 13.307353,
+			friction: 0.1,
+			restitution: 0.3,
+			density: 1,
+			sensor: false,
+			group-index: 0,
+			category-bits: 1,
+			mask-bits: -1
+		}
+	},
+	body: {
+		name: Body_25,
+		body-type: DynamicBody,
+		active: true,
+		allow-sleep: true,
+		awake: true,
+		bullet: false,
+		fixed-rotation: false,
+		angular-damping: 0,
+		linear-damping: 0,
+		gravity-scale: 1,
+		fixture-circle: {
+			name: Fixture_circle_26,
+			center: "375.1931,690.2146",
+			radius: 14.532852,
+			friction: 0.1,
+			restitution: 0.3,
+			density: 1,
+			sensor: false,
+			group-index: 0,
+			category-bits: 1,
+			mask-bits: -1
+		}
+	},
+	joint-rope: {
+		name: Joint_rope_27,
+		body-a: Body_23,
+		body-b: Body_0,
+		collide-connected: true,
+		anchor-a: "376.99567,762.3176",
+		anchor-b: "376.0944,796.5665"
+	},
+	joint-rope: {
+		name: Joint_rope_28,
+		body-a: Body_25,
+		body-b: Body_23,
+		collide-connected: true,
+		anchor-a: "376.0944,701.9314",
+		anchor-b: "376.99567,742.48926"
 	}
 },
-body: {
-	name: Body_17,
-	body-type: StaticBody,
-	active: true,
-	allow-sleep: true,
-	awake: true,
-	bullet: false,
-	fixed-rotation: false,
-	angular-damping: 0,
-	linear-damping: 0,
-	gravity-scale: 1,
-	fixture-chain: {
-		name: Fixture_chain_18,
-		vertexes: "140.54459,69.75748|182.62918,129.49045|241.00464,140.35098|311.59814,121.34506|345.53735,52.1091",
-		looped: false,
-		first-ghost: false,
-		last-ghost: false,
-		friction: 0.1,
-		restitution: 0.3,
-		density: 1,
-		sensor: false,
-		group-index: 0,
-		category-bits: 1,
-		mask-bits: -1
+group: {
+	name: weld,
+	body: {
+		name: Body_30,
+		body-type: DynamicBody,
+		active: true,
+		allow-sleep: true,
+		awake: true,
+		bullet: false,
+		fixed-rotation: false,
+		angular-damping: 0,
+		linear-damping: 0,
+		gravity-scale: 1,
+		fixture-circle: {
+			name: Fixture_circle_31,
+			center: "38.111588,577.5537",
+			radius: 19.76679,
+			friction: 0.1,
+			restitution: 0.3,
+			density: 1,
+			sensor: false,
+			group-index: 0,
+			category-bits: 1,
+			mask-bits: -1
+		}
+	},
+	body: {
+		name: Body_32,
+		body-type: DynamicBody,
+		active: true,
+		allow-sleep: true,
+		awake: true,
+		bullet: false,
+		fixed-rotation: false,
+		angular-damping: 0,
+		linear-damping: 0,
+		gravity-scale: 1,
+		fixture-polygon: {
+			name: Fixture_polygon_33,
+			convexes: [
+				{
+					vertexes: "68.44754,633.71533|62.22534,615.4803|81.47418,605.57117|98.01944,605.4939",
+					triangles: "0,1,2,0,2,3"
+				},
+				{
+					vertexes: "102.012695,566.93427|87.46472,574.1703|65.9111,563.6169|77.57074,547.6551",
+					triangles: "0,1,3,1,2,3"
+				},
+				{
+					vertexes: "81.47418,605.57117|87.46472,574.1703|102.012695,566.93427|98.01944,605.4939",
+					triangles: "0,1,3,3,1,2"
+				}
+			],
+			friction: 0.1,
+			restitution: 0.3,
+			density: 1,
+			sensor: false,
+			group-index: 0,
+			category-bits: 1,
+			mask-bits: -1
+		}
+	},
+	joint-weld: {
+		name: Joint_weld_34,
+		body-a: Body_30,
+		body-b: Body_32,
+		collide-connected: false,
+		anchor-a: "47.124466,569.4421",
+		anchor-b: "73.261795,560.4292"
 	}
 },
-body: {
-	name: Body_19,
-	body-type: StaticBody,
-	active: true,
-	allow-sleep: true,
-	awake: true,
-	bullet: false,
-	fixed-rotation: false,
-	angular-damping: 0,
-	linear-damping: 0,
-	gravity-scale: 1,
-	fixture-edge: {
-		name: Fixture_gear_20,
-		v1: "287.24362,416.92313",
-		v2: "377.50006,443.71802",
-		friction: 0.1,
-		restitution: 0.3,
-		density: 1,
-		sensor: false,
-		group-index: 0,
-		category-bits: 1,
-		mask-bits: -1
+group: {
+	name: prismatic,
+	body: {
+		name: Body_36,
+		body-type: DynamicBody,
+		active: true,
+		allow-sleep: true,
+		awake: true,
+		bullet: false,
+		fixed-rotation: false,
+		angular-damping: 0,
+		linear-damping: 0,
+		gravity-scale: 1,
+		fixture-polygon: {
+			name: Fixture_rect_polygon_37,
+			convexes: [
+				{
+					vertexes: "121.03003,698.3262|103.00431,670.3862|103.905594,634.3348|132.7468,665.8799",
+					triangles: "0,1,3,1,2,3"
+				},
+				{
+					vertexes: "149.87122,665.8799|132.7468,665.8799|103.905594,634.3348|132.7468,560.4292|149.87122,560.4292",
+					triangles: "0,1,2,0,2,4,4,2,3"
+				}
+			],
+			friction: 0.1,
+			restitution: 0.3,
+			density: 1,
+			sensor: false,
+			group-index: 0,
+			category-bits: 1,
+			mask-bits: -1
+		}
+	},
+	joint-prismatic: {
+		name: Joint_prismatic_38,
+		body-a: Body_36,
+		body-b: Body_0,
+		collide-connected: true,
+		anchor-a: "140.85834,677.59656",
+		anchor-b: "465.32193,605.4935",
+		enable-limit: false,
+		enable-motor: false,
+		motor-speed: 0.2,
+		max-motor-force: 1000
 	}
 },
-body: {
-	name: Body_21,
-	body-type: StaticBody,
-	active: true,
-	allow-sleep: true,
-	awake: true,
-	bullet: false,
-	fixed-rotation: false,
-	angular-damping: 0,
-	linear-damping: 0,
-	gravity-scale: 1,
-	fixture-edge: {
-		name: Fixture_gear_22,
-		v1: "453.65393,515.6411",
-		v2: "369.03854,487.43597",
-		friction: 0.1,
-		restitution: 0.3,
-		density: 1,
-		sensor: false,
-		group-index: 0,
-		category-bits: 1,
-		mask-bits: -1
+group: {
+	name: wheel,
+	body: {
+		name: Body_40,
+		body-type: DynamicBody,
+		active: true,
+		allow-sleep: true,
+		awake: true,
+		bullet: false,
+		fixed-rotation: false,
+		angular-damping: 0,
+		linear-damping: 0,
+		gravity-scale: 1,
+		fixture-polygon: {
+			name: Fixture_rect_polygon_41,
+			convexes: [
+				{
+					vertexes: "157.9828,492.83267|157.9828,473.9056|295.87982,473.9056|295.87982,492.83267",
+					triangles: "0,2,3,0,1,2"
+				}
+			],
+			friction: 0.1,
+			restitution: 0.3,
+			density: 1,
+			sensor: false,
+			group-index: 0,
+			category-bits: 1,
+			mask-bits: -1
+		}
+	},
+	body: {
+		name: Body_42,
+		body-type: DynamicBody,
+		active: true,
+		allow-sleep: true,
+		awake: true,
+		bullet: false,
+		fixed-rotation: false,
+		angular-damping: 0,
+		linear-damping: 0,
+		gravity-scale: 1,
+		fixture-circle: {
+			name: Fixture_circle_43,
+			center: "225.57944,435.1502",
+			radius: 17.602571,
+			friction: 0.1,
+			restitution: 0.3,
+			density: 1,
+			sensor: false,
+			group-index: 0,
+			category-bits: 1,
+			mask-bits: -1
+		}
+	},
+	joint-wheel: {
+		name: "Joint_Joint wheel_44",
+		body-a: Body_42,
+		body-b: Body_40,
+		collide-connected: true,
+		position: "225.57944,435.1502",
+		local-axis: "224.67812,482.91846",
+		frequency-hz: 10,
+		damping-ratio: 1,
+		enable-motor: true,
+		motor-speed: 1,
+		max-motor-torque: 1000
+	}
+},
+group: {
+	name: pulley,
+	body: {
+		name: Body_46,
+		body-type: DynamicBody,
+		active: true,
+		allow-sleep: true,
+		awake: true,
+		bullet: false,
+		fixed-rotation: false,
+		angular-damping: 0,
+		linear-damping: 0,
+		gravity-scale: 1,
+		fixture-circle: {
+			name: Fixture_circle_47,
+			center: "90.38628,332.40344",
+			radius: 41.105022,
+			friction: 0.1,
+			restitution: 0.3,
+			density: 1,
+			sensor: false,
+			group-index: 0,
+			category-bits: 1,
+			mask-bits: -1
+		}
+	},
+	body: {
+		name: Body_48,
+		body-type: DynamicBody,
+		active: true,
+		allow-sleep: true,
+		awake: true,
+		bullet: false,
+		fixed-rotation: false,
+		angular-damping: 0,
+		linear-damping: 0,
+		gravity-scale: 1,
+		fixture-polygon: {
+			name: Fixture_gear_49,
+			convexes: [
+				{
+					vertexes: "340.61472,339.31543|332.10126,338.47876|331.1902,334.00174|338.69812,329.888|345.67358,329.26978|347.27786,337.1609",
+					triangles: "0,1,2,0,2,3,5,0,3,5,3,4"
+				},
+				{
+					vertexes: "347.84262,313.41357|345.86505,321.2195|338.92682,320.27042|331.619,315.82355|332.74014,311.39447|341.28943,310.94473",
+					triangles: "0,1,5,1,2,5,2,4,5,3,4,2"
+				},
+				{
+					vertexes: "355.4755,350.92148|350.40836,355.75507|342.36328,358.6823|339.6003,355.04364|344.58905,348.09442|350.60452,344.50922",
+					triangles: "0,4,5,0,1,4,1,2,4,2,3,4"
+				},
+				{
+					vertexes: "351.5072,306.2432|345.66745,302.37836|341.0238,295.1861|343.9566,291.6829|351.84152,295.0006|356.6751,300.06775",
+					triangles: "0,1,5,1,4,5,1,2,4,4,2,3"
+				},
+				{
+					vertexes: "345.67358,329.26978|345.86505,321.2195|351.5072,306.2432|411.49713,345.94565|361.65094,356.0894|355.4755,350.92148|350.60452,344.50922|347.27786,337.1609",
+					triangles: "0,1,7,6,7,1,1,3,6,5,6,3,1,2,3,3,4,5"
+				},
+				{
+					vertexes: "351.5072,306.2432|345.86505,321.2195|347.84262,313.41357",
+					triangles: "0,1,2"
+				},
+				{
+					vertexes: "356.6751,300.06775|363.08737,295.19678|386.37708,290.4573|394.183,292.43488|417.13928,330.96933|415.1617,338.77527|411.49713,345.94565|351.5072,306.2432",
+					triangles: "0,6,7,6,0,1,6,1,4,1,2,4,5,6,4,3,4,2"
+				},
+				{
+					vertexes: "368.82132,359.75397|366.35248,366.3072|360.3735,372.4345|356.30566,370.35455|357.7861,361.92914|361.65094,356.0894",
+					triangles: "0,4,5,1,4,0,1,2,4,2,3,4"
+				},
+				{
+					vertexes: "363.08737,295.19678|359.5022,289.1813|358.43808,280.6866|362.60022,278.80237|368.28116,285.20697|370.4357,291.87012",
+					triangles: "0,1,5,1,4,5,4,1,2,4,2,3"
+				},
+				{
+					vertexes: "361.65094,356.0894|411.49713,345.94565|406.32922,352.1211|399.91696,356.99207|392.56863,360.31873|384.67752,361.923|376.62726,361.73154|368.82132,359.75397",
+					triangles: "0,1,6,1,3,6,7,0,6,4,6,3,2,3,1,5,6,4"
+				},
+				{
+					vertexes: "363.08737,295.19678|370.4357,291.87012|378.3268,290.26584|386.37708,290.4573",
+					triangles: "0,1,3,1,2,3"
+				},
+				{
+					vertexes: "384.67752,361.923|385.29575,368.89847|382.58606,377.01245|378.01855,376.90472|375.67816,368.66977|376.62726,361.73154",
+					triangles: "0,4,5,4,0,1,3,4,1,2,3,1"
+				},
+				{
+					vertexes: "386.37708,290.4573|378.3268,290.26584|377.7086,283.29037|380.41827,275.1764|384.98578,275.28412|387.32617,283.51907",
+					triangles: "0,1,5,2,5,1,4,5,2,4,2,3"
+				},
+				{
+					vertexes: "394.72318,366.98187|392.56863,360.31873|399.91696,356.99207|403.50217,363.00754|404.56625,371.50223|400.4041,373.38647",
+					triangles: "0,1,2,0,2,3,0,3,4,5,0,4"
+				},
+				{
+					vertexes: "401.3534,296.09946|394.183,292.43488|396.65186,285.88165|402.6308,279.75436|406.69867,281.83432|405.21823,290.2597",
+					triangles: "0,1,5,1,2,5,2,3,5,5,3,4"
+				},
+				{
+					vertexes: "394.183,292.43488|401.3534,296.09946|407.52884,301.26736|412.3998,307.67963|415.72647,315.02795|417.33075,322.91907|417.13928,330.96933",
+					triangles: "0,3,6,6,3,4,0,1,3,6,4,5,3,1,2"
+				},
+				{
+					vertexes: "411.1628,357.18823|406.32922,352.1211|411.49713,345.94565|417.33688,349.8105|421.98053,357.00275|419.04773,360.50595",
+					triangles: "0,1,2,0,2,3,0,3,4,5,0,4"
+				},
+				{
+					vertexes: "412.3998,307.67963|407.52884,301.26736|412.59598,296.43378|420.64105,293.50653|423.40402,297.1452|418.41528,304.09445",
+					triangles: "0,1,5,1,2,5,5,2,3,5,3,4"
+				},
+				{
+					vertexes: "415.1617,338.77527|417.13928,330.96933|424.0775,331.91843|431.38535,336.3653|430.26416,340.79437|421.7149,341.2441",
+					triangles: "0,1,5,5,1,2,5,2,4,4,2,3"
+				},
+				{
+					vertexes: "417.33075,322.91907|415.72647,315.02795|422.38962,312.8734|430.90308,313.71008|431.81415,318.18707|424.3062,322.30084",
+					triangles: "0,1,5,1,2,5,4,5,2,4,2,3"
+				}
+			],
+			friction: 0.1,
+			restitution: 0.3,
+			density: 1,
+			sensor: false,
+			group-index: 0,
+			category-bits: 1,
+			mask-bits: -1
+		}
+	},
+	joint-pulley: {
+		name: Joint_pulley_50,
+		body-a: Body_46,
+		body-b: Body_48,
+		collide-connected: false,
+		anchor-a: "90.38628,331.50217",
+		anchor-b: "379.6996,327.897",
+		ground-anchor-a: "139.95706,796.5665",
+		ground-anchor-b: "353.56226,798.36914",
+		ratio: 1
+	}
+},
+group: {
+	name: friction,
+	body: {
+		name: Body_52,
+		body-type: DynamicBody,
+		active: true,
+		allow-sleep: true,
+		awake: true,
+		bullet: false,
+		fixed-rotation: false,
+		angular-damping: 0,
+		linear-damping: 0,
+		gravity-scale: 1,
+		fixture-polygon: {
+			name: Fixture_rect_polygon_53,
+			convexes: [
+				{
+					vertexes: "267.03864,378.3691|267.03864,283.73395|325.6223,283.73395|325.6223,378.3691",
+					triangles: "0,2,3,0,1,2"
+				}
+			],
+			friction: 0.1,
+			restitution: 0.3,
+			density: 1,
+			sensor: false,
+			group-index: 0,
+			category-bits: 1,
+			mask-bits: -1
+		}
+	},
+	joint-friction: {
+		name: Joint_friction_54,
+		body-a: Body_52,
+		body-b: Body_0,
+		collide-connected: true,
+		anchor-a: "295.87982,332.40344",
+		anchor-b: "296.78113,355.83694",
+		max-force: 30,
+		max-torque: 10
+	}
+},
+group: {
+	name: gear,
+	body: {
+		name: Body_56,
+		body-type: DynamicBody,
+		active: true,
+		allow-sleep: true,
+		awake: true,
+		bullet: false,
+		fixed-rotation: false,
+		angular-damping: 0,
+		linear-damping: 0,
+		gravity-scale: 1,
+		fixture-polygon: {
+			name: Fixture_gear_57,
+			convexes: [
+				{
+					vertexes: "53.7307,100.28466|54.172417,95.73728|62.556576,94.00581|69.40672,95.46012|68.62687,103.48859|61.62489,103.59734",
+					triangles: "0,1,5,5,1,2,3,5,2,4,5,3"
+				},
+				{
+					vertexes: "66.16739,122.16957|57.6176,122.60917|56.04301,118.3203|62.8501,113.139305|69.65242,111.475555|72.42911,119.034225",
+					triangles: "0,4,5,0,3,4,0,1,3,1,2,3"
+				},
+				{
+					vertexes: "76.129745,80.93687|71.95024,87.81983|65.5953,84.87804|59.912586,78.483826|62.283165,74.57818|70.5885,76.65502",
+					triangles: "0,1,5,1,2,5,2,4,5,3,4,2"
+				},
+				{
+					vertexes: "78.316605,136.93298|70.818405,141.0508|67.53801,137.87074|71.410484,130.23557|76.81777,125.78575|82.59845,131.39174",
+					triangles: "0,4,5,3,4,0,2,3,0,1,2,0"
+				},
+				{
+					vertexes: "69.40672,95.46012|71.95024,87.81983|76.129745,80.93687|81.73574,75.15619|82.59845,131.39174|72.42911,119.034225|69.65242,111.475555|68.62687,103.48859",
+					triangles: "0,2,7,6,7,2,1,2,0,2,3,6,3,5,6,4,5,3"
+				},
+				{
+					vertexes: "82.59845,131.39174|76.81777,125.78575|72.42911,119.034225",
+					triangles: "0,1,2"
+				},
+				{
+					vertexes: "81.73574,75.15619|77.285934,69.7489|74.955315,61.51116|78.786415,59.0219|85.35192,64.5058|88.48727,70.76752",
+					triangles: "0,1,5,1,4,5,4,1,2,4,2,3"
+				},
+				{
+					vertexes: "104.03291,66.96529|112.06137,67.74514|119.70165,70.288666|137.23282,118.04007|82.59845,131.39174|81.73574,75.15619|88.48727,70.76752|96.04594,67.99083",
+					triangles: "0,4,5,5,7,0,2,4,0,7,5,6,2,0,1,2,3,4"
+				},
+				{
+					vertexes: "137.23282,118.04007|133.05333,124.92304|127.447334,130.70372|113.13714,137.86908|105.15017,138.89462|97.121704,138.11478|89.481415,135.57124|82.59845,131.39174",
+					triangles: "0,6,7,0,2,6,6,2,4,1,2,0,2,3,4,4,5,6"
+				},
+				{
+					vertexes: "97.121704,138.11478|95.6674,144.96492|90.69765,151.92773|86.362495,150.48544|86.53962,141.9262|89.481415,135.57124",
+					triangles: "0,4,5,1,4,0,3,4,1,2,3,1"
+				},
+				{
+					vertexes: "104.03291,66.96529|96.04594,67.99083|94.382195,61.18852|95.855675,52.75519|100.38736,52.174194|103.92416,59.963306",
+					triangles: "0,1,2,0,2,5,3,5,2,5,3,4"
+				},
+				{
+					vertexes: "114.80089,144.67139|113.327415,153.1047|108.79573,153.68571|105.25893,145.8966|105.15017,138.89462|113.13714,137.86908",
+					triangles: "0,4,5,0,3,4,1,3,0,2,3,1"
+				},
+				{
+					vertexes: "119.70165,70.288666|112.06137,67.74514|113.51568,60.894993|118.48543,53.932182|122.82058,55.374474|122.64345,63.933716",
+					triangles: "0,1,5,1,2,5,5,2,4,4,2,3"
+				},
+				{
+					vertexes: "120.69581,135.09239|113.13714,137.86908|127.447334,130.70372",
+					triangles: "0,1,2"
+				},
+				{
+					vertexes: "137.23282,118.04007|119.70165,70.288666|126.584625,74.46816|132.36531,80.07416|136.75397,86.82568|139.53065,94.38435|140.55621,102.37133|139.77635,110.39979",
+					triangles: "0,1,5,1,4,5,0,5,7,4,1,2,7,5,6,4,2,3"
+				},
+				{
+					vertexes: "131.89714,136.11101|134.22775,144.34874|130.39667,146.83801|123.83116,141.35411|120.69581,135.09239|127.447334,130.70372",
+					triangles: "0,4,5,0,3,4,3,0,1,2,3,1"
+				},
+				{
+					vertexes: "132.36531,80.07416|126.584625,74.46816|130.86647,68.926926|138.36465,64.80913|141.64507,67.98918|137.7726,75.62435",
+					triangles: "0,1,2,5,0,2,4,5,2,4,2,3"
+				},
+				{
+					vertexes: "143.58777,120.98187|149.2705,127.376076|146.89992,131.28172|138.59457,129.2049|133.05333,124.92304|137.23282,118.04007",
+					triangles: "0,4,5,3,4,0,2,3,0,1,2,0"
+				},
+				{
+					vertexes: "139.53065,94.38435|136.75397,86.82568|143.01569,83.69034|151.56548,83.250755|153.14006,87.53963|146.33298,92.72061",
+					triangles: "0,1,2,5,0,2,5,2,3,5,3,4"
+				},
+				{
+					vertexes: "139.77635,110.39979|140.55621,102.37133|147.55818,102.26257|155.45238,105.57525|155.01065,110.12263|146.6265,111.854095",
+					triangles: "0,1,5,5,1,2,5,2,4,4,2,3"
+				}
+			],
+			friction: 0.1,
+			restitution: 0.3,
+			density: 1,
+			sensor: false,
+			group-index: 0,
+			category-bits: 1,
+			mask-bits: -1
+		}
+	},
+	joint-revolute: {
+		name: Joint_revolute_58,
+		body-a: Body_0,
+		body-b: Body_56,
+		collide-connected: false,
+		position: "104.59154,102.929955",
+		enable-limit: false,
+		lower-angle: -45,
+		upper-angle: 45,
+		enable-motor: false,
+		motor-speed: 0.2,
+		max-motor-torque: 1000
+	},
+	body: {
+		name: Body_59,
+		body-type: DynamicBody,
+		active: true,
+		allow-sleep: true,
+		awake: true,
+		bullet: false,
+		fixed-rotation: false,
+		angular-damping: 0,
+		linear-damping: 0,
+		gravity-scale: 1,
+		fixture-polygon: {
+			name: Fixture_rect_polygon_60,
+			convexes: [
+				{
+					vertexes: "172.30444,282.5163|172.30444,247.18782|245.90535,247.18782|245.90535,282.5163",
+					triangles: "0,2,3,0,1,2"
+				}
+			],
+			friction: 0.1,
+			restitution: 0.3,
+			density: 1,
+			sensor: false,
+			group-index: 0,
+			category-bits: 1,
+			mask-bits: -1
+		}
+	},
+	joint-prismatic: {
+		name: Joint_prismatic_61,
+		body-a: Body_0,
+		body-b: Body_59,
+		collide-connected: true,
+		anchor-a: "204.68884,24.422256",
+		anchor-b: "206.65155,264.85205",
+		enable-limit: true,
+		enable-motor: false,
+		motor-speed: 0.2,
+		max-motor-force: 1000
+	},
+	joint-gear: {
+		name: Joint_gear_62,
+		body-a: Body_56,
+		body-b: Body_59,
+		collide-connected: false,
+		joint-a: Joint_revolute_58,
+		joint-b: Joint_prismatic_61,
+		ratio: 1
 	}
 }
 }

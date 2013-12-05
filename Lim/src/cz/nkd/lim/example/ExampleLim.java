@@ -70,9 +70,9 @@ public class ExampleLim implements ApplicationListener {
 
         VeRenderer veRenderer = new VeRenderer(spriteBatch, whitePixel, font);
         renderVisitor = new RenderVisitor(veRenderer);
-       // renderVisitor.renderFixturesDynamic = false;
-       // renderVisitor.renderFixturesKinematic = false;
-       // renderVisitor.renderFixturesSensors = false;
+        // renderVisitor.renderFixturesDynamic = false;
+        // renderVisitor.renderFixturesKinematic = false;
+        // renderVisitor.renderFixturesSensors = false;
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -92,10 +92,22 @@ public class ExampleLim implements ApplicationListener {
         camera.update();
     }
 
+    private long counter = 0;
+
     @Override
     public void render() {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+
+        counter++;
+        if (counter == 200) {
+            scene.findItem("gear").destroy();
+            System.out.println("DESTROY");
+        } else if (counter == 400) {
+            scene.findItem("gear").create();
+            System.out.println("CREATE");
+            counter = 0;
+        }
 
         if (scene.computeWorldStep()) {
             scene.update();

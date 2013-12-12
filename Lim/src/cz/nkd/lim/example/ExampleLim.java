@@ -19,11 +19,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
 
-import cz.nkd.veced.RenderVisitor;
-import cz.nkd.veced.VeLoader;
-import cz.nkd.veced.VeRenderer;
-import cz.nkd.veced.scene.VeScene;
-import cz.nkd.veced.tool.TouchInteractive;
+import cz.nkd.vbox.RenderVisitor;
+import cz.nkd.vbox.VboxLoader;
+import cz.nkd.vbox.VboxRenderer;
+import cz.nkd.vbox.scene.VboxScene;
+import cz.nkd.vbox.tool.TouchInteractive;
 
 /**
  * @author Michal NkD Nikodim
@@ -48,7 +48,7 @@ public class ExampleLim implements ApplicationListener {
     private Vector2 gravity = new Vector2();
     private Vector2 gravityMem = new Vector2();
 
-    private VeScene scene;
+    private VboxScene scene;
     private TouchInteractive touchInteractive;
     private RenderVisitor renderVisitor;
 
@@ -68,7 +68,7 @@ public class ExampleLim implements ApplicationListener {
         TextureRegion whitePixel = new TextureRegion(new Texture(pm));
         pm.dispose();
 
-        VeRenderer veRenderer = new VeRenderer(spriteBatch, whitePixel, font);
+        VboxRenderer veRenderer = new VboxRenderer(spriteBatch, whitePixel, font);
         renderVisitor = new RenderVisitor(veRenderer);
         // renderVisitor.renderFixturesDynamic = false;
         // renderVisitor.renderFixturesKinematic = false;
@@ -80,7 +80,7 @@ public class ExampleLim implements ApplicationListener {
 
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("lim_test/export.atlas"));
 
-        scene = new VeLoader(Gdx.files.internal("lim_test/export.json"), atlas).veScene;
+        scene = new VboxLoader(Gdx.files.internal("lim_test/export.json"), atlas).veScene;
         touchInteractive = new TouchInteractive(scene, camera);
         scene.create();
     }

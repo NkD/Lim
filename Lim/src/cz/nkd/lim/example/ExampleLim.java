@@ -92,14 +92,14 @@ public class ExampleLim implements ApplicationListener {
         camera.update();
     }
 
-    private long counter = 0;
+    //private long counter = 0;
 
     @Override
     public void render() {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
-        counter++;
+       /* counter++;
         if (counter == 600) {
             scene.findItem("Head").destroy();
             //System.out.println("DESTROY");
@@ -107,7 +107,7 @@ public class ExampleLim implements ApplicationListener {
             scene.findItem("Head").create();
             //System.out.println("CREATE");
             counter = 0;
-        }
+        }*/
 
         if (scene.computeWorldStep()) {
             scene.update();

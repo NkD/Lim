@@ -1,7 +1,6 @@
 package cz.nkd.lim.rayhandler;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.VertexAttribute;
@@ -31,7 +30,8 @@ public abstract class PositionalLight extends Light {
         this.body = body;
         bodyOffsetX = offsetX;
         bodyOffsetY = offSetY;
-        if (staticLight) staticUpdate();
+        if (staticLight)
+            staticUpdate();
     }
 
     @Override
@@ -67,14 +67,16 @@ public abstract class PositionalLight extends Light {
     public void setPosition(float x, float y) {
         start.x = x;
         start.y = y;
-        if (staticLight) staticUpdate();
+        if (staticLight)
+            staticUpdate();
     }
 
     @Override
     public void setPosition(Vector2 position) {
         start.x = position.x;
         start.y = position.y;
-        if (staticLight) staticUpdate();
+        if (staticLight)
+            staticUpdate();
     }
 
     @Override
@@ -93,10 +95,12 @@ public abstract class PositionalLight extends Light {
 
         if (rayHandler.culling) {
             culled = ((!rayHandler.intersect(start.x, start.y, distance + softShadowLenght)));
-            if (culled) return;
+            if (culled)
+                return;
         }
 
-        if (staticLight) return;
+        if (staticLight)
+            return;
 
         for (int i = 0; i < rayNum; i++) {
             m_index = i;
@@ -130,7 +134,8 @@ public abstract class PositionalLight extends Light {
             }
             lightMesh.setVertices(segments, 0, size);
 
-            if (!soft || xray) return;
+            if (!soft || xray)
+                return;
 
             size = 0;
             // rays ending points.
@@ -168,7 +173,8 @@ public abstract class PositionalLight extends Light {
             }
             lightMesh.setVertices(segments, 0, size);
 
-            if (!soft || xray) return;
+            if (!soft || xray)
+                return;
 
             size = 0;
             for (int i = 0; i < rayNum; i++) {
@@ -190,20 +196,15 @@ public abstract class PositionalLight extends Light {
 
     @Override
     void render() {
-        if (rayHandler.culling && culled) return;
+        if (rayHandler.culling && culled)
+            return;
 
         rayHandler.lightRenderedLastFrame++;
-        if (rayHandler.isGL20) {
-            lightMesh.render(rayHandler.lightShader, GL20.GL_TRIANGLE_FAN, 0, vertexNum);
-            if (soft && !xray) {
-                softShadowMesh.render(rayHandler.lightShader, GL20.GL_TRIANGLE_STRIP, 0, (vertexNum - 1) * 2);
-            }
-        } else {
-            lightMesh.render(GL10.GL_TRIANGLE_FAN, 0, vertexNum);
-            if (soft && !xray) {
-                softShadowMesh.render(GL10.GL_TRIANGLE_STRIP, 0, (vertexNum - 1) * 2);
-            }
+        lightMesh.render(rayHandler.lightShader, GL20.GL_TRIANGLE_FAN, 0, vertexNum);
+        if (soft && !xray) {
+            softShadowMesh.render(rayHandler.lightShader, GL20.GL_TRIANGLE_STRIP, 0, (vertexNum - 1) * 2);
         }
+
     }
 
     PositionalLight(RayHandler rayHandler, int rays, Color color, float distance, float x, float y, float directionDegree, float body2WorldScale) {
@@ -233,7 +234,8 @@ public abstract class PositionalLight extends Light {
         final float x_d = start.x - x;
         final float y_d = start.y - y;
         final float dst2 = x_d * x_d + y_d * y_d;
-        if (distance * distance <= dst2) return false;
+        if (distance * distance <= dst2)
+            return false;
 
         // actual check
 
@@ -245,7 +247,8 @@ public abstract class PositionalLight extends Light {
             x1 = mx[i];
             y1 = my[i];
             if (((y1 < y) && (y2 >= y)) || (y1 >= y) && (y2 < y)) {
-                if ((y - y1) / (y2 - y1) * (x2 - x1) < (x - x1)) oddNodes = !oddNodes;
+                if ((y - y1) / (y2 - y1) * (x2 - x1) < (x - x1))
+                    oddNodes = !oddNodes;
             }
         }
         return oddNodes;

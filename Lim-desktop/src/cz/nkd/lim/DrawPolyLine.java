@@ -13,7 +13,7 @@ public class DrawPolyLine {
     public static void main(String[] args) {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "Lim";
-        cfg.useGL20 = false;
+        //cfg.useGL20 = false;
         cfg.width = 800;
         cfg.height = 480;
         cfg.vSyncEnabled = false;

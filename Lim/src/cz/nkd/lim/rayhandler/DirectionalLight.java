@@ -1,7 +1,6 @@
 package cz.nkd.lim.rayhandler;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.VertexAttribute;
@@ -51,14 +50,16 @@ public class DirectionalLight extends Light {
         super.direction = direction;
         sin = MathUtils.sinDeg(direction);
         cos = MathUtils.cosDeg(direction);
-        if (staticLight) staticUpdate();
+        if (staticLight)
+            staticUpdate();
     }
 
     float lastX;
 
     @Override
     void update() {
-        if (staticLight) return;
+        if (staticLight)
+            return;
 
         final float width = (rayHandler.x2 - rayHandler.x1);
         final float height = (rayHandler.y2 - rayHandler.y1);
@@ -118,7 +119,8 @@ public class DirectionalLight extends Light {
 
         lightMesh.setVertices(segments, 0, size);
 
-        if (!soft || xray) return;
+        if (!soft || xray)
+            return;
 
         size = 0;
         for (int i = 0; i < arraySize; i++) {
@@ -139,16 +141,9 @@ public class DirectionalLight extends Light {
     @Override
     void render() {
         rayHandler.lightRenderedLastFrame++;
-        if (rayHandler.isGL20) {
-            lightMesh.render(rayHandler.lightShader, GL20.GL_TRIANGLE_STRIP, 0, vertexNum);
-            if (soft && !xray) {
-                softShadowMesh.render(rayHandler.lightShader, GL20.GL_TRIANGLE_STRIP, 0, vertexNum);
-            }
-        } else {
-            lightMesh.render(GL10.GL_TRIANGLE_STRIP, 0, vertexNum);
-            if (soft && !xray) {
-                softShadowMesh.render(GL10.GL_TRIANGLE_STRIP, 0, vertexNum);
-            }
+        lightMesh.render(rayHandler.lightShader, GL20.GL_TRIANGLE_STRIP, 0, vertexNum);
+        if (soft && !xray) {
+            softShadowMesh.render(rayHandler.lightShader, GL20.GL_TRIANGLE_STRIP, 0, vertexNum);
         }
     }
 
@@ -190,14 +185,16 @@ public class DirectionalLight extends Light {
             x1 = mx[i];
             y1 = my[i];
             if (((y1 < y) && (y2 >= y)) || (y1 >= y) && (y2 < y)) {
-                if ((y - y1) / (y2 - y1) * (x2 - x1) < (x - x1)) oddNodes = !oddNodes;
+                if ((y - y1) / (y2 - y1) * (x2 - x1) < (x - x1))
+                    oddNodes = !oddNodes;
             }
         }
         for (int i = 0; i < rayNum; x2 = x1, y2 = y1, ++i) {
             x1 = start[i].x;
             y1 = start[i].y;
             if (((y1 < y) && (y2 >= y)) || (y1 >= y) && (y2 < y)) {
-                if ((y - y1) / (y2 - y1) * (x2 - x1) < (x - x1)) oddNodes = !oddNodes;
+                if ((y - y1) / (y2 - y1) * (x2 - x1) < (x - x1))
+                    oddNodes = !oddNodes;
             }
         }
         return oddNodes;

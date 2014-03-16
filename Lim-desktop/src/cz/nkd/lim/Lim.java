@@ -13,7 +13,7 @@ public class Lim {
     public static void main(String[] args) {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "Lim";
-        cfg.useGL20 = true;
+        //cfg.useGL20 = true;
         cfg.width = 480;
         cfg.height = 800;
         cfg.vSyncEnabled = false;

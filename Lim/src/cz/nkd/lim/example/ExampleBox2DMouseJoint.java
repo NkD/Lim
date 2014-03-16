@@ -1,14 +1,12 @@
 package cz.nkd.lim.example;
 
-import java.util.Iterator;
-
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
@@ -31,6 +29,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.joints.MouseJoint;
 import com.badlogic.gdx.physics.box2d.joints.MouseJointDef;
 import com.badlogic.gdx.utils.Array;
+
+import java.util.Iterator;
 
 /**
  * @author Michal NkD Nikodim
@@ -192,7 +192,7 @@ public class ExampleBox2DMouseJoint implements ApplicationListener {
     @Override
     public void render() {
         Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //fixed FPS (vsync) . Because with variable step produce weird behaviour if MouseJoint moving body (slow rotation) 
         world.step(BOX_STEP, BOX_VELOCITY_ITERATIONS, BOX_POSITION_ITERATIONS);

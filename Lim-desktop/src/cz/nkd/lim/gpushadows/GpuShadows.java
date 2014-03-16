@@ -6,7 +6,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,7 +26,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 public class GpuShadows implements ApplicationListener {
 
   public static void main(String[] args) {
-		new LwjglApplication(new GpuShadows(), "Test", 800, 600, true);
+		new LwjglApplication(new GpuShadows(), "Test", 800, 600);
 	}
 	
 	/** 
@@ -158,13 +158,13 @@ public class GpuShadows implements ApplicationListener {
 	public void render() {
 		//clear frame
 		Gdx.gl.glClearColor(0.25f,0.25f,0.25f,1f);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		float mx = Gdx.input.getX();
 		float my = Gdx.graphics.getHeight() - Gdx.input.getY();
 				
 		if (additive)
-			batch.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE);
+			batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
 		
 		for (int i=0; i<lights.size; i++) {
 			Light o = lights.get(i);
@@ -176,7 +176,7 @@ public class GpuShadows implements ApplicationListener {
 		}
 		
 		if (additive)
-			batch.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+			batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		
 		//STEP 4. render sprites in full colour		
 		batch.begin();
@@ -225,7 +225,7 @@ public class GpuShadows implements ApplicationListener {
 		
 		//clear the FBO
 		Gdx.gl.glClearColor(0f,0f,0f,0f);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		//set the orthographic camera to the size of our FBO
 		cam.setToOrtho(false, occludersFBO.getWidth(), occludersFBO.getHeight());
@@ -256,7 +256,7 @@ public class GpuShadows implements ApplicationListener {
 		
 		//clear it
 		Gdx.gl.glClearColor(0f,0f,0f,0f);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		//set our shadow map shader
 		batch.setShader(shadowMapShader);

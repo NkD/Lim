@@ -13,7 +13,7 @@ public class Box2DFixedTimeStep {
     public static void main(String[] args) {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "Lim";
-        cfg.useGL20 = true;
+        //cfg.useGL20 = true;
         cfg.width = 800;
         cfg.height = 480;
         cfg.vSyncEnabled = false;

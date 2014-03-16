@@ -4,13 +4,14 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector3;
 
 /**
@@ -18,7 +19,7 @@ import com.badlogic.gdx.math.Vector3;
  *
  */
 public class ExampleDrawPolyLine implements ApplicationListener {
-
+    ShaderProgram shader;
     private OrthographicCamera camera;
 
     private BitmapFont font;
@@ -32,7 +33,13 @@ public class ExampleDrawPolyLine implements ApplicationListener {
 
     @Override
     public void create() {
-  
+        String vertexShader = "attribute vec4 vPosition;    \n" + "void main()                  \n"
+                + "{                            \n" + "   gl_Position = vPosition;  \n" + "}                            \n";
+        String fragmentShader = "#ifdef GL_ES\n" + "precision mediump float;\n" + "#endif\n"
+                + "void main()                                  \n" + "{                                            \n"
+                + "  gl_FragColor = vec4 ( 1.0, 1.0, 1.0, 1.0 );\n" + "}";
+
+        shader = new ShaderProgram(vertexShader, fragmentShader);
         font = new BitmapFont();
         info = new StringBuilder();
         batch = new SpriteBatch();
@@ -42,26 +49,25 @@ public class ExampleDrawPolyLine implements ApplicationListener {
         camera.update();
 
         lineMesh = new Mesh(false, MAX_LINES * 2, 0, new VertexAttribute(Usage.Position, 2, "a_pos"));
-        
+
         lineVertices = new float[MAX_LINES * 2 * 2];
 
         pointMesh = new Mesh(false, 8, 0, new VertexAttribute(Usage.Position, 2, "a_pos"));
-        
+
         lineVertices[0] = 0;
         lineVertices[1] = 0;
-        
+
         lineVertices[2] = 5;
         lineVertices[3] = 0;
-        
+
         lineVertices[4] = 5;
         lineVertices[5] = 5;
-        
+
         lineVertices[6] = 0;
         lineVertices[7] = 5;
-        
+
         pointMesh.setVertices(lineVertices, 0, 8);
-        
-        
+
         Gdx.input.setInputProcessor(new InputProcessor() {
 
             private Vector3 point;
@@ -149,19 +155,22 @@ public class ExampleDrawPolyLine implements ApplicationListener {
     @Override
     public void resize(int width, int height) {
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.position.set( Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
+        camera.position.set(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
         camera.update();
     }
 
     @Override
     public void render() {
         Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         //camera.update();
-        camera.apply(Gdx.gl10);
-        if (vertexIndex >= 4) lineMesh.render(GL10.GL_LINE_STRIP);
-        pointMesh.render(GL10.GL_LINE_LOOP);
-        
+        //camera.apply(Gdx.gl20);
+        shader.begin();
+        if (vertexIndex >= 4)
+            lineMesh.render(shader, GL20.GL_LINE_STRIP);
+        pointMesh.render(shader, GL20.GL_LINE_LOOP);
+        shader.end();
+
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         info.setLength(0);

@@ -12,7 +12,7 @@ public class Box2DMouseJoint extends AndroidApplication {
         super.onCreate(savedInstanceState);
         
         AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
-        cfg.useGL20 = true;
+        //cfg.useGL20 = true;
         cfg.useAccelerometer = true;
         cfg.useCompass = false;
         cfg.useWakelock = true;

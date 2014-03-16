@@ -1,12 +1,10 @@
 package cz.nkd.lim.example;
 
-import java.util.Iterator;
-
 import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
-import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
@@ -24,6 +22,8 @@ import cz.nkd.vbox.VboxLoader;
 import cz.nkd.vbox.VboxRenderer;
 import cz.nkd.vbox.scene.VboxScene;
 import cz.nkd.vbox.tool.TouchInteractive;
+
+import java.util.Iterator;
 
 /**
  * @author Michal NkD Nikodim
@@ -97,7 +97,7 @@ public class ExampleLim implements ApplicationListener {
     @Override
     public void render() {
         Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         counter++;
         if (counter == 600) {

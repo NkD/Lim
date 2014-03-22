@@ -32,7 +32,8 @@ class LightMap {
 
         boolean needed = rayHandler.lightRenderedLastFrame > 0;
         // this way lot less binding
-        if (needed && rayHandler.blur) gaussianBlur();
+        if (needed && rayHandler.blur)
+            gaussianBlur();
 
         frameBuffer.getColorBufferTexture().bind(0);
 
@@ -103,8 +104,10 @@ class LightMap {
     public LightMap(RayHandler rayHandler, int fboWidth, int fboHeight) {
         this.rayHandler = rayHandler;
 
-        if (fboWidth <= 0) fboWidth = 1;
-        if (fboHeight <= 0) fboHeight = 1;
+        if (fboWidth <= 0)
+            fboWidth = 1;
+        if (fboHeight <= 0)
+            fboHeight = 1;
         frameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, fboWidth, fboHeight, false);
         pingPongBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, fboWidth, fboHeight, false);
 

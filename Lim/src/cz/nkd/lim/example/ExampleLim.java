@@ -26,8 +26,7 @@ import cz.nkd.vbox.tool.TouchInteractive;
 import java.util.Iterator;
 
 /**
- * @author Michal NkD Nikodim
- *
+ * @author Michal NkD Nikodim (michal.nikodim@gmail.com)
  */
 public class ExampleLim implements ApplicationListener {
 
@@ -99,15 +98,15 @@ public class ExampleLim implements ApplicationListener {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-       /* counter++;
-        if (counter == 600) {
-            scene.findItem("Head").destroy();
-            //System.out.println("DESTROY");
-        } else if (counter == 1200) {
-            scene.findItem("Head").create();
-            //System.out.println("CREATE");
-            counter = 0;
-        }*/
+        /* counter++;
+         if (counter == 600) {
+             scene.findItem("Head").destroy();
+             //System.out.println("DESTROY");
+         } else if (counter == 1200) {
+             scene.findItem("Head").create();
+             //System.out.println("CREATE");
+             counter = 0;
+         }*/
 
         if (scene.computeWorldStep()) {
             scene.update();
@@ -148,7 +147,8 @@ public class ExampleLim implements ApplicationListener {
                     body.setAwake(true);
                 }
             }
-            if (!Gdx.input.isButtonPressed(Buttons.MIDDLE)) flagMouseMiddle = true;
+            if (!Gdx.input.isButtonPressed(Buttons.MIDDLE))
+                flagMouseMiddle = true;
         }
 
         spriteBatch.setProjectionMatrix(camera.combined);

@@ -34,8 +34,7 @@ import cz.nkd.lim.rayhandler.RayHandler;
 import java.util.Iterator;
 
 /**
- * @author Michal NkD Nikodim
- *
+ * @author Michal NkD Nikodim (michal.nikodim@gmail.com)
  */
 public class ExampleBox2DWithLight implements ApplicationListener {
 
@@ -65,7 +64,7 @@ public class ExampleBox2DWithLight implements ApplicationListener {
 
     private long currentTime = -1;
     private long accumulator = 0;
-    
+
     @Override
     public void create() {
         sWidth = Gdx.graphics.getWidth();
@@ -111,14 +110,14 @@ public class ExampleBox2DWithLight implements ApplicationListener {
         PointLight pl = new PointLight(rayHandler, 500, new Color(1, 1, 1, 0.7f), 10, 200, 200, B2W);
         lightBody = createLight(camera.viewportWidth / 2 - 20, 20, 20);
         pl.attachToBody(lightBody, 0, 0);
-        
+
         currentTime = System.nanoTime();
     }
 
     @Override
     public void resize(int width, int height) {
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.position.set( Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
+        camera.position.set(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
         camera.update();
     }
 
@@ -144,7 +143,7 @@ public class ExampleBox2DWithLight implements ApplicationListener {
             } else {
                 gravity.set(-Gdx.input.getAccelerometerX(), -Gdx.input.getAccelerometerY());
             }
-            if (gravityMem.dst(gravity) > 0.3f){
+            if (gravityMem.dst(gravity) > 0.3f) {
                 gravityMem.set(gravity);
                 world.setGravity(gravity);
                 Array<Body> bodies = new Array<Body>();
@@ -173,7 +172,8 @@ public class ExampleBox2DWithLight implements ApplicationListener {
                     body.setAwake(true);
                 }
             }
-            if (!Gdx.input.isButtonPressed(Buttons.MIDDLE)) flagMouseMiddle = true;
+            if (!Gdx.input.isButtonPressed(Buttons.MIDDLE))
+                flagMouseMiddle = true;
         }
 
         if ((flagMouseLeft && Gdx.input.isButtonPressed(Buttons.LEFT)) || Gdx.input.isButtonPressed(Buttons.RIGHT)) {
@@ -185,9 +185,10 @@ public class ExampleBox2DWithLight implements ApplicationListener {
             float b = MathUtils.random(0.5f) + 0.5f;
             createBody(BodyType.DynamicBody, pickRay.origin.x - halfSize, pickRay.origin.y - halfSize, pickRay.origin.x + halfSize, pickRay.origin.y + halfSize, r, g, b);
         }
-        if (!Gdx.input.isButtonPressed(Buttons.LEFT)) flagMouseLeft = true;
+        if (!Gdx.input.isButtonPressed(Buttons.LEFT))
+            flagMouseLeft = true;
 
-       rayHandler.render();
+        rayHandler.render();
         spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();
         Array<Body> bodies = new Array<Body>();
@@ -213,7 +214,7 @@ public class ExampleBox2DWithLight implements ApplicationListener {
         shapeRenderer.begin(ShapeType.Filled);
         shapeRenderer.circle(lightBody.getPosition().x * B2W, lightBody.getPosition().y * B2W, lightBody.getFixtureList().get(0).getShape().getRadius() * B2W);
         shapeRenderer.end();
-        
+
         spriteBatch.begin();
         info.setLength(0);
         info.append("FPS: ").append(Gdx.graphics.getFramesPerSecond());
@@ -227,7 +228,6 @@ public class ExampleBox2DWithLight implements ApplicationListener {
 
         spriteBatch.end();
 
-        
     }
 
     @Override

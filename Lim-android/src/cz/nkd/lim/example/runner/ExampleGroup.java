@@ -1,23 +1,20 @@
 package cz.nkd.lim.example.runner;
 
-
 /**
- * @author Michal NkD Nikodim
- *
+ * @author Michal NkD Nikodim (michal.nikodim@gmail.com)
  */
 public enum ExampleGroup {
-    
+
     NkD(Example.BOX2D, Example.BOX2D_WITH_LIGHT, Example.BOX2D_MOUSEJOINT, Example.BOX2D_FIXED_TIMESTEP, Example.LIM),
-    DERHAA(Example.D1, Example.D2, Example.D3)
-    ;
-    
+    DERHAA(Example.D1, Example.D2, Example.D3);
+
     private Example[] enumExamples;
 
-    private ExampleGroup(Example... enumExamples){
+    private ExampleGroup(Example... enumExamples) {
         this.enumExamples = enumExamples;
     }
-    
-    public Example[] getExamples(){
+
+    public Example[] getExamples() {
         return enumExamples;
     }
 

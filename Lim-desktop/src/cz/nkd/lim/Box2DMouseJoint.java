@@ -6,8 +6,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import cz.nkd.lim.example.ExampleBox2DMouseJoint;
 
 /**
- * @author Michal NkD Nikodim
- *
+ * @author Michal NkD Nikodim (michal.nikodim@gmail.com)
  */
 public class Box2DMouseJoint {
     public static void main(String[] args) {

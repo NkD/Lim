@@ -6,8 +6,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import cz.nkd.lim.example.ExampleLim;
 
 /**
- * @author Michal NkD Nikodim
- *
+ * @author Michal NkD Nikodim (michal.nikodim@gmail.com)
  */
 public class Lim {
     public static void main(String[] args) {
@@ -17,7 +16,7 @@ public class Lim {
         cfg.width = 480;
         cfg.height = 800;
         cfg.vSyncEnabled = false;
-        
+
         new LwjglApplication(new ExampleLim(), cfg);
     }
 }

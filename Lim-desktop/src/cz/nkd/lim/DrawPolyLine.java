@@ -6,8 +6,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import cz.nkd.lim.example.ExampleDrawPolyLine;
 
 /**
- * @author Michal NkD Nikodim
- *
+ * @author Michal NkD Nikodim (michal.nikodim@gmail.com)
  */
 public class DrawPolyLine {
     public static void main(String[] args) {
@@ -17,7 +16,7 @@ public class DrawPolyLine {
         cfg.width = 800;
         cfg.height = 480;
         cfg.vSyncEnabled = false;
-        
+
         new LwjglApplication(new ExampleDrawPolyLine(), cfg);
     }
 }

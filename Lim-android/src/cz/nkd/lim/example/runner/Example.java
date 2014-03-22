@@ -7,10 +7,8 @@ import cz.nkd.lim.example.Box2DMouseJoint;
 import cz.nkd.lim.example.Box2DWithLight;
 import cz.nkd.lim.example.Lim;
 
-
 /**
- * @author Michal NkD Nikodim
- *
+ * @author Michal NkD Nikodim (michal.nikodim@gmail.com)
  */
 public enum Example {
 
@@ -21,19 +19,18 @@ public enum Example {
     LIM(Lim.class),
     D1(null),
     D2(null),
-    D3(null), 
-    
+    D3(null),
+
     ;
-    
-    
+
     private final Class<? extends Activity> activityClass;
 
-    private Example(final Class<? extends Activity> activityClass){
+    private Example(final Class<? extends Activity> activityClass) {
         this.activityClass = activityClass;
     }
-    
-    public Class<? extends Activity> getActivityClass(){
+
+    public Class<? extends Activity> getActivityClass() {
         return activityClass;
     }
-    
+
 }

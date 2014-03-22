@@ -27,8 +27,7 @@ import com.badlogic.gdx.utils.Array;
 import java.util.Iterator;
 
 /**
- * @author Michal NkD Nikodim
- *
+ * @author Michal NkD Nikodim (michal.nikodim@gmail.com)
  */
 public class ExampleBox2D implements ApplicationListener {
 
@@ -100,7 +99,7 @@ public class ExampleBox2D implements ApplicationListener {
     @Override
     public void resize(int width, int height) {
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.position.set( Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
+        camera.position.set(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
         camera.update();
     }
 
@@ -109,12 +108,14 @@ public class ExampleBox2D implements ApplicationListener {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        if (nano == -1) nano = System.nanoTime();
+        if (nano == -1)
+            nano = System.nanoTime();
         world.step(step, BOX_VELOCITY_ITERATIONS, BOX_POSITION_ITERATIONS);
         long now = System.nanoTime();
         step = (System.nanoTime() - nano) / 1000000000f;
         nano = now;
-        if (step > MAX_BOX_STEP) step = MAX_BOX_STEP;
+        if (step > MAX_BOX_STEP)
+            step = MAX_BOX_STEP;
         if (Gdx.app.getType() == ApplicationType.Android) {
             if (sWidth > sHeight) {
                 gravity.set(Gdx.input.getAccelerometerY(), -Gdx.input.getAccelerometerX());
@@ -150,7 +151,8 @@ public class ExampleBox2D implements ApplicationListener {
                     body.setAwake(true);
                 }
             }
-            if (!Gdx.input.isButtonPressed(Buttons.MIDDLE)) flagMouseMiddle = true;
+            if (!Gdx.input.isButtonPressed(Buttons.MIDDLE))
+                flagMouseMiddle = true;
         }
 
         if ((flagMouseLeft && Gdx.input.isButtonPressed(Buttons.LEFT)) || Gdx.input.isButtonPressed(Buttons.RIGHT)) {
@@ -162,7 +164,8 @@ public class ExampleBox2D implements ApplicationListener {
             float b = MathUtils.random(0.5f) + 0.5f;
             createBody(BodyType.DynamicBody, pickRay.origin.x - halfSize, pickRay.origin.y - halfSize, pickRay.origin.x + halfSize, pickRay.origin.y + halfSize, r, g, b);
         }
-        if (!Gdx.input.isButtonPressed(Buttons.LEFT)) flagMouseLeft = true;
+        if (!Gdx.input.isButtonPressed(Buttons.LEFT))
+            flagMouseLeft = true;
 
         spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();

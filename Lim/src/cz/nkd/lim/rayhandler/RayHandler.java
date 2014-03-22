@@ -238,7 +238,7 @@ public class RayHandler implements Disposable {
         if (isGL20) {
             renderWithShaders();
         } else {
-           //
+            //
         }
 
     }
@@ -279,7 +279,8 @@ public class RayHandler implements Disposable {
     public boolean pointAtLight(float x, float y) {
         final Light[] list = lightList.items;
         for (int i = 0, size = lightList.size; i < size; i++) {
-            if (list[i].contains(x, y)) return true;
+            if (list[i].contains(x, y))
+                return true;
         }
         return false;
     }
@@ -294,11 +295,13 @@ public class RayHandler implements Disposable {
     public boolean pointAtShadow(float x, float y) {
         final Light[] list = lightList.items;
         for (int i = 0, size = lightList.size; i < size; i++) {
-            if (list[i].contains(x, y)) return false;
+            if (list[i].contains(x, y))
+                return false;
         }
         return true;
     }
 
+    @SuppressWarnings("unused")
     private void alphaChannelClear() {
         Gdx.gl20.glClearColor(0f, 0f, 0f, ambientLight.a);
         Gdx.gl20.glColorMask(false, false, false, true);
@@ -322,8 +325,10 @@ public class RayHandler implements Disposable {
         }
         disabledLights.clear();
 
-        if (lightMap != null) lightMap.dispose();
-        if (lightShader != null) lightShader.dispose();
+        if (lightMap != null)
+            lightMap.dispose();
+        if (lightShader != null)
+            lightShader.dispose();
     }
 
     public void removeAll() {
@@ -417,8 +422,10 @@ public class RayHandler implements Disposable {
      *            the ambientLight to set
      */
     public final void setAmbientLight(float ambientLight) {
-        if (ambientLight < 0) ambientLight = 0;
-        if (ambientLight > 1) ambientLight = 1;
+        if (ambientLight < 0)
+            ambientLight = 0;
+        if (ambientLight > 1)
+            ambientLight = 1;
         this.ambientLight.a = ambientLight;
     }
 

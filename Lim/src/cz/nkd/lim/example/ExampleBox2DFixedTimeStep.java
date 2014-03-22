@@ -28,8 +28,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 /**
- * @author Michal NkD Nikodim
- *
+ * @author Michal NkD Nikodim (michal.nikodim@gmail.com)
  */
 public class ExampleBox2DFixedTimeStep implements ApplicationListener {
 
@@ -77,7 +76,7 @@ public class ExampleBox2DFixedTimeStep implements ApplicationListener {
         info = new StringBuilder();
 
         spriteBatch = new SpriteBatch(3000);
-        camera =  new OrthographicCamera();
+        camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.position.set(sWidth / 2, sHeight / 2, 0);
         camera.update();
@@ -114,7 +113,7 @@ public class ExampleBox2DFixedTimeStep implements ApplicationListener {
     @Override
     public void resize(int width, int height) {
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.position.set( Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
+        camera.position.set(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
         camera.update();
     }
 
@@ -167,7 +166,8 @@ public class ExampleBox2DFixedTimeStep implements ApplicationListener {
                     body.setAwake(true);
                 }
             }
-            if (!Gdx.input.isButtonPressed(Buttons.MIDDLE)) flagMouseMiddle = true;
+            if (!Gdx.input.isButtonPressed(Buttons.MIDDLE))
+                flagMouseMiddle = true;
         }
 
         if ((flagMouseLeft && Gdx.input.isButtonPressed(Buttons.LEFT)) || Gdx.input.isButtonPressed(Buttons.RIGHT)) {
@@ -180,8 +180,9 @@ public class ExampleBox2DFixedTimeStep implements ApplicationListener {
             createBody(BodyType.DynamicBody, pickRay.origin.x - halfSize, pickRay.origin.y - halfSize, pickRay.origin.x + halfSize, pickRay.origin.y + halfSize, r, g, b);
 
         }
-        if (!Gdx.input.isButtonPressed(Buttons.LEFT)) flagMouseLeft = true;
-        
+        if (!Gdx.input.isButtonPressed(Buttons.LEFT))
+            flagMouseLeft = true;
+
         drawTimeNano = System.nanoTime();
         camera.update();
         spriteBatch.setProjectionMatrix(camera.combined);

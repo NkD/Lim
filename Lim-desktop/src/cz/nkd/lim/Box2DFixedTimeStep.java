@@ -6,8 +6,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import cz.nkd.lim.example.ExampleBox2DFixedTimeStep;
 
 /**
- * @author Michal NkD Nikodim
- *
+ * @author Michal NkD Nikodim (michal.nikodim@gmail.com)
  */
 public class Box2DFixedTimeStep {
     public static void main(String[] args) {
@@ -17,7 +16,7 @@ public class Box2DFixedTimeStep {
         cfg.width = 800;
         cfg.height = 480;
         cfg.vSyncEnabled = false;
-        
+
         new LwjglApplication(new ExampleBox2DFixedTimeStep(), cfg);
     }
 }

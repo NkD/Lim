@@ -1,6 +1,3 @@
-/**
- * 
- */
 package cz.nkd.lim.example.runner;
 
 import android.content.Context;
@@ -12,17 +9,16 @@ import android.widget.TextView;
 import cz.nkd.lim.R;
 
 /**
- * @author Michal NkD Nikodim
- *
+ * @author Michal NkD Nikodim (michal.nikodim@gmail.com)
  */
-public class ExamplesListAdapter extends BaseExpandableListAdapter{
+public class ExamplesListAdapter extends BaseExpandableListAdapter {
 
     private final Context mContext;
 
     public ExamplesListAdapter(final Context pContext) {
         this.mContext = pContext;
     }
-    
+
     @Override
     public int getGroupCount() {
         return ExampleGroup.values().length;
@@ -61,13 +57,13 @@ public class ExamplesListAdapter extends BaseExpandableListAdapter{
     @Override
     public View getChildView(final int pGroupPosition, final int pChildPosition, final boolean pIsLastChild, final View pConvertView, final ViewGroup pParent) {
         final View childView;
-        if (pConvertView != null){
+        if (pConvertView != null) {
             childView = pConvertView;
-        }else{
+        } else {
             childView = LayoutInflater.from(this.mContext).inflate(R.layout.examples_list_item, null);
         }
 
-        TextView tv = ((TextView)childView.findViewById(R.id.examplesListItemTextView));
+        TextView tv = ((TextView) childView.findViewById(R.id.examplesListItemTextView));
         tv.setPadding(60, 10, 2, 10);
         tv.setText(this.getChild(pGroupPosition, pChildPosition).name());
         return childView;
@@ -76,12 +72,12 @@ public class ExamplesListAdapter extends BaseExpandableListAdapter{
     @Override
     public View getGroupView(final int pGroupPosition, final boolean pIsExpanded, final View pConvertView, final ViewGroup pParent) {
         final View groupView;
-        if (pConvertView != null){
+        if (pConvertView != null) {
             groupView = pConvertView;
-        }else{
+        } else {
             groupView = LayoutInflater.from(this.mContext).inflate(R.layout.examples_list_item, null);
         }
-        TextView tv = ((TextView)groupView.findViewById(R.id.examplesListItemTextView));
+        TextView tv = ((TextView) groupView.findViewById(R.id.examplesListItemTextView));
         tv.setPadding(50, 15, 2, 15);
         tv.setText(this.getGroup(pGroupPosition).name());
         return groupView;

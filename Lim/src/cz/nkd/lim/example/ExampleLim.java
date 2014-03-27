@@ -17,11 +17,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
 
-import cz.nkd.vbox.RenderVisitor;
-import cz.nkd.vbox.VboxLoader;
-import cz.nkd.vbox.VboxRenderer;
-import cz.nkd.vbox.scene.VboxScene;
+import cz.nkd.vbox.VBoxSceneParser;
+import cz.nkd.vbox.VBoxLoader;
+import cz.nkd.vbox.scene.VBoxScene;
+import cz.nkd.vbox.scene.visitor.VBoxRenderVisitor;
 import cz.nkd.vbox.tool.TouchInteractive;
+import cz.nkd.vbox.tool.VBoxRenderer;
 
 import java.util.Iterator;
 
@@ -47,9 +48,9 @@ public class ExampleLim implements ApplicationListener {
     private Vector2 gravity = new Vector2();
     private Vector2 gravityMem = new Vector2();
 
-    private VboxScene scene;
+    private VBoxScene scene;
     private TouchInteractive touchInteractive;
-    private RenderVisitor renderVisitor;
+    private VBoxRenderVisitor renderVisitor;
 
     @Override
     public void create() {
@@ -67,8 +68,8 @@ public class ExampleLim implements ApplicationListener {
         TextureRegion whitePixel = new TextureRegion(new Texture(pm));
         pm.dispose();
 
-        VboxRenderer veRenderer = new VboxRenderer(spriteBatch, whitePixel, font);
-        renderVisitor = new RenderVisitor(veRenderer);
+        VBoxRenderer veRenderer = new VBoxRenderer(spriteBatch, whitePixel, font);
+        renderVisitor = new VBoxRenderVisitor(veRenderer);
         // renderVisitor.renderFixturesDynamic = false;
         // renderVisitor.renderFixturesKinematic = false;
         // renderVisitor.renderFixturesSensors = false;
@@ -77,9 +78,12 @@ public class ExampleLim implements ApplicationListener {
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.update();
 
-        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("lim_test/export.atlas"));
+        //TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("lim_test/export.atlas"));
+        //scene = new VBoxLoader(Gdx.files.internal("lim_test/export.json"), atlas).scene;
 
-        scene = new VboxLoader(Gdx.files.internal("lim_test/export.json"), atlas).veScene;
+        
+        scene = new VBoxLoader(Gdx.files.internal("lim_export/lim.zip")).scene;
+        //scene = new VBoxZipLoader(Gdx.files.local("c:/NkD/projekty_nkd/Lim/Lim-android/assets/lim_export/lim.zip")).scene;
         touchInteractive = new TouchInteractive(scene, camera);
         scene.create();
     }

@@ -11,13 +11,11 @@ import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
 
-import cz.nkd.vbox.VBoxSceneParser;
 import cz.nkd.vbox.VBoxLoader;
 import cz.nkd.vbox.scene.VBoxScene;
 import cz.nkd.vbox.scene.visitor.VBoxRenderVisitor;
@@ -78,12 +76,7 @@ public class ExampleLim implements ApplicationListener {
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.update();
 
-        //TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("lim_test/export.atlas"));
-        //scene = new VBoxLoader(Gdx.files.internal("lim_test/export.json"), atlas).scene;
-
-        
-        scene = new VBoxLoader(Gdx.files.internal("lim_export/lim.zip")).scene;
-        //scene = new VBoxZipLoader(Gdx.files.local("c:/NkD/projekty_nkd/Lim/Lim-android/assets/lim_export/lim.zip")).scene;
+        scene = new VBoxLoader(Gdx.files.internal("lim_export/lim_atlas.zip")).getScene();
         touchInteractive = new TouchInteractive(scene, camera);
         scene.create();
     }

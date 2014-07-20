@@ -83,8 +83,8 @@ public class ExampleJoints implements ApplicationListener {
         spriteBatch.dispose();
         vboxScene.destroy();
     }
-    
-    private VBoxRenderer createVBoxRenderer(SpriteBatch sb, BitmapFont font){
+
+    private VBoxRenderer createVBoxRenderer(SpriteBatch sb, BitmapFont font) {
         Pixmap pm = new Pixmap(1, 1, Format.RGB888);
         pm.setColor(1, 1, 1, 1);
         pm.drawPixel(0, 0);
@@ -92,13 +92,13 @@ public class ExampleJoints implements ApplicationListener {
         pm.dispose();
         return new VBoxRenderer(sb, whitePixel, font);
     }
-    
+
     private boolean flagMouseMiddle = true;
     private int rotGravityHelper = 0;
     private Vector2 gravity = new Vector2();
     private Vector2 gravityMem = new Vector2();
-    
-    private void inspectDeviceRotation(){
+
+    private void inspectDeviceRotation() {
         if (Gdx.app.getType() == ApplicationType.Android) {
             if (Gdx.graphics.getWidth() > Gdx.graphics.getHeight()) {
                 gravity.set(Gdx.input.getAccelerometerY(), -Gdx.input.getAccelerometerX());
@@ -133,19 +133,18 @@ public class ExampleJoints implements ApplicationListener {
                     body.setAwake(true);
                 }
             }
-            if (!Gdx.input.isButtonPressed(Buttons.MIDDLE))
-                flagMouseMiddle = true;
+            if (!Gdx.input.isButtonPressed(Buttons.MIDDLE)) flagMouseMiddle = true;
         }
     }
-    
+
     private StringBuilder info;
-    
-    private void drawInfo(){
+
+    private void drawInfo() {
         spriteBatch.begin();
         info.setLength(0);
         info.append("FPS: ").append(Gdx.graphics.getFramesPerSecond());
         info.append(" Bodies: ").append(vboxScene.world.getBodyCount());
-        font.draw(spriteBatch, info.toString(), 5, camera.viewportHeight - 5);
+        font.draw(spriteBatch, info.toString(), camera.position.x - (camera.viewportWidth / 2), camera.position.y + (camera.viewportHeight / 2));
         spriteBatch.end();
     }
 

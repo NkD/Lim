@@ -42,7 +42,10 @@ public class ExampleLim implements ApplicationListener {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         spriteBatch = new SpriteBatch();
         vboxRenderVisitor = new VBoxRenderVisitor(createVBoxRenderer(spriteBatch, font));
-        vboxScene = new VBoxZipLoader(Gdx.files.internal("lim_export/lim.zip")).getScene();
+        vboxRenderVisitor.renderJoints = false;
+        vboxRenderVisitor.renderFixturesDynamic = false;
+        
+        vboxScene = new VBoxZipLoader(Gdx.files.internal("lim.zip")).getScene();
         vboxScene.create();
         VBoxDragItemsByTouch.create(vboxScene, camera, false);
     }

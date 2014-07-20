@@ -42,9 +42,9 @@ public class ExampleJoints implements ApplicationListener {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         spriteBatch = new SpriteBatch();
         vboxRenderVisitor = new VBoxRenderVisitor(createVBoxRenderer(spriteBatch, font));
-        vboxScene = new VBoxZipLoader(Gdx.files.internal("lim_export/test_joints.zip")).getScene();
+        vboxScene = new VBoxZipLoader(Gdx.files.internal("joints.zip")).getScene();
         vboxScene.create();
-        VBoxDragItemsByTouch.create(vboxScene, camera);
+        VBoxDragItemsByTouch.create(vboxScene, camera, true);
     }
 
     @Override

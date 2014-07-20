@@ -13,8 +13,8 @@ public class Joints {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "Lim";
         //cfg.useGL20 = true;
-        cfg.width = 1650;
-        cfg.height = 1050;
+        cfg.width = 480;
+        cfg.height = 800;
         cfg.vSyncEnabled = false;
 
         new LwjglApplication(new ExampleJoints(), cfg);
